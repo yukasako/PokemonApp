@@ -63,83 +63,11 @@ let getPolkemonList = async () => {
 };
 getPolkemonList();
 
-// chooseBtn.addEventListener("click", async () => {
-//   let pokemonData = await getData(selectPokemon.value);
-//   console.log(pokemonData);
-
-//   let name = data.forms[0].name;
-//   //   let type = data;
-//   let img = data.sprites.other["official-artwork"].front_default;
-//   let weight = data.weight;
-//   let height = data.height;
-//   let hp = data.stats[0].base_stat;
-//   let attack = data.stats[1].base_stat;
-//   let defence = data.stats[2].base_stat;
-//   let specialAttack = data.stats[3].base_stat;
-//   let specialDefence = data.stats[4].base_stat;
-//   let speed = data.stats[5].base_stat;
-
-//   //Create instanse
-//   let pokemon;
-//   pokemon = new Pokemon(
-//     name,
-//     // type,
-//     img,
-//     weight,
-//     height,
-//     hp,
-//     attack,
-//     defence,
-//     specialAttack,
-//     specialDefence,
-//     speed
-//   );
-//   console.log(pokemon);
-
-//   //DOM
-//   pokemonImg.src = pokemon.img;
-//   description.innerHTML = `
-//   <p>Name: ${pokemon.name}</p>
-//   <p>Weight: ${pokemon.weight}</p>
-//   <p>Height: ${pokemon.height}</p>
-//   <p>Hp: ${pokemon.hp}</p>
-//   <p>Attack: ${pokemon.attack}</p>`;
-
-//   //Add to Battle List
-//   addToBattleList.addEventListener("click", () => {
-//     // Data
-//     if (battleList.length < 3) {
-//       battleList.push(pokemon);
-//       console.log(battleList);
-//     }
-
-//     //DOM
-//     let chosenPokemon = document.createElement("div");
-//     chosenPokemon.classList = "flex-column";
-//     let p = document.createElement("p");
-//     p.innerText = `${pokemon.name}, I choose you!`;
-//     let chosenPokemonImg = document.createElement("img");
-//     chosenPokemonImg.src = pokemon.img;
-//     let deteteBtn = document.createElement("button");
-//     deteteBtn.innerText = "delete";
-//     deteteBtn.addEventListener("click", () => {});
-//     chosenPokemon.append(p, chosenPokemonImg, deteteBtn);
-
-//     if (battleListDiv.childElementCount < 3) {
-//       battleListDiv.append(chosenPokemon);
-//     } else {
-//       alert(
-//         "You already chose 2 pokemon. Delete a pokemon if you want to add another"
-//       );
-//     }
-//   });
-// });
-
 chooseBtn.addEventListener("click", async () => {
   let pokemonData = await getData(selectPokemon.value);
   console.log(pokemonData);
 
-  let name = data.forms[0].name;
+  let name = data.forms[0].name.toUpperCase();
   //   let type = data;
   let img = data.sprites.other["official-artwork"].front_default;
   let weight = data.weight;
@@ -214,7 +142,7 @@ chooseBtn.addEventListener("click", async () => {
               battleList.push(pokemon);
               console.log(battleList);
             } else {
-              alert("The Pokemon is already chosen");
+              alert("The Pokemon has already been chosen");
             }
           });
         } else {

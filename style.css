@@ -1,8 +1,12 @@
+/* DotGothic16 */
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+/* Play */
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Play:wght@400;700&display=swap");
 :root {
   --color-1: #ffffff;
-  --color-2: #f7f1f3;
+  --color-2: #c3c3c3;
   --color-3: #f4625d;
-  --color-4: #57575d;
+  --color-4: #2c2c2f;
   --color-5: #000000;
   --color-modal: hsla(0, 0%, 0%, 0.8);
   --shadow-1: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -13,11 +17,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Play;
 }
 
 body {
   background: var(--color-1);
   text-align: center;
+  gap: 20px;
 }
 
 .flex {
@@ -46,21 +52,53 @@ body {
   display: block;
 }
 
+button {
+  padding: 3px;
+}
+
 #pokedex {
   background: var(--color-3);
-  width: 85vw;
+  width: 80vw;
+  max-width: 700px;
+  border-radius: 30px;
+}
+#pokedex #pokedexHeader {
+  width: 100%;
+  background-color: var(--color-3);
+  position: relative;
+}
+#pokedex #pokedexHeader .headerLeft {
+  position: absolute;
+  left: 0;
+}
+#pokedex #pokedexHeader .headerRight {
+  position: absolute;
+  right: 0;
+  width: calc(100% - 306px);
+  height: 125px;
 }
 #pokedex #screen {
   width: 80%;
-  min-height: 30vh;
+  min-height: 40vh;
   color: var(--color-1);
   background: var(--color-4);
+  border: solid 15px var(--color-2);
+  border-radius: 10px;
+  margin-top: 150px;
+  padding: 20px;
 }
 #pokedex #screen #pokemonImg {
-  width: 80%;
+  width: 50%;
 }
 #pokedex #screen #description {
   text-align: left;
+}
+#pokedex .buttons {
+  padding: 50px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #battleListDiv div img {
