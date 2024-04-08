@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon App</title>
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Lets battle!</h2>
+    <div id="pokedexes" class="flex-column">
+      <div id="select">
+        <select name="selectPokemon" id="selectPokemon">
+          <option value="">Choose a Pokemon!</option>
+        </select>
+        <button id="choose">Display Pokemon</button>
+      </div>
+      <article id="pokedex" class="flex-column">
+        <img src="" alt="pokedexHeader" class="pokedexHeader" />
+        <div id="screen" class="flex-column">
+          <img id="pokemonImg" src="" alt="" />
+          <div id="description"></div>
+          <div id="status"></div>
+        </div>
+        <div>
+          <button id="addToBattleList">I CHOOSE YOU!</button>
+          <img src="" alt="crossImg" />
+        </div>
+      </article>
+    </div>
+    <div id="battleListDiv" class="flex-row"></div>
+    <div id="compare">
+      <button id="compareBtn">Compare Pokemon</button>
+      <article id="compareStatus"></article>
+      <p id="statusSummary"></p>
+    </div>
+    <div id="battle">
+      <button id="startBattleBtn">Let's battle!</button>
+    </div>
+  </body>
+</html>
