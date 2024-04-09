@@ -56,42 +56,60 @@ button {
   padding: 3px;
 }
 
+h1 {
+  margin: 30px;
+}
+
 #pokedex {
   background: var(--color-3);
   width: 80vw;
-  max-width: 700px;
+  max-width: 500px;
+  aspect-ratio: 3/4;
   border-radius: 30px;
+  justify-content: space-between;
 }
 #pokedex #pokedexHeader {
   width: 100%;
+  height: 10vh;
   background-color: var(--color-3);
   position: relative;
+  border-radius: 30px;
+  display: flex;
 }
 #pokedex #pokedexHeader .headerLeft {
-  position: absolute;
-  left: 0;
+  flex: 0 0 auto;
+  height: 100%;
 }
 #pokedex #pokedexHeader .headerRight {
-  position: absolute;
-  right: 0;
-  width: calc(100% - 306px);
-  height: 125px;
+  flex: 1 1 auto;
 }
 #pokedex #screen {
   width: 80%;
-  min-height: 40vh;
+  aspect-ratio: 1/1;
   color: var(--color-1);
   background: var(--color-4);
   border: solid 15px var(--color-2);
   border-radius: 10px;
-  margin-top: 150px;
+  margin-top: 2vh;
   padding: 20px;
+  gap: 10px;
 }
 #pokedex #screen #pokemonImg {
   width: 50%;
 }
 #pokedex #screen #description {
   text-align: left;
+}
+#pokedex #screen #status {
+  width: 100%;
+}
+#pokedex #screen #status div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#pokedex #screen #status div progress {
+  width: 60%;
 }
 #pokedex .buttons {
   padding: 50px;
@@ -102,5 +120,29 @@ button {
 }
 
 #battleListDiv div img {
-  width: 40%;
+  width: 50%;
+  min-width: 150px;
+}
+
+#battle .playerDiv {
+  width: 80%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+#battle .playerDiv .playerStatus {
+  width: 50%;
+}
+#battle .playerDiv .playerImg {
+  width: 30%;
+}
+#battle .playerDiv:nth-child(3) {
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+#battle .comment {
+  margin-top: 20px;
+  width: 80%;
+  aspect-ratio: 3/1;
+  border: 5px double var(--color-4);
+  border-radius: 5px;
 }/*# sourceMappingURL=style.css.map */
