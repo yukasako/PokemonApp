@@ -49,7 +49,7 @@ body {
 }
 
 .display {
-  display: block;
+  display: flex;
 }
 
 button {
@@ -124,25 +124,36 @@ h1 {
   min-width: 150px;
 }
 
-#battle .playerDiv {
+#battle {
+  width: 100%;
+}
+#battle #battleField {
+  width: 100%;
+}
+#battle #battleField .playerDiv {
   width: 80%;
   align-items: flex-start;
   justify-content: space-between;
 }
-#battle .playerDiv .playerStatus {
+#battle #battleField .playerDiv .playerStatus {
   width: 50%;
 }
-#battle .playerDiv .playerImg {
+#battle #battleField .playerDiv .playerImg {
   width: 30%;
 }
-#battle .playerDiv:nth-child(3) {
+#battle #battleField .playerDiv:nth-child(2) {
   flex-direction: row-reverse;
   align-items: flex-end;
 }
-#battle .comment {
+#battle #comment {
   margin-top: 20px;
   width: 80%;
   aspect-ratio: 3/1;
+  justify-content: space-around;
   border: 5px double var(--color-4);
   border-radius: 5px;
+}
+#battle #comment #attackBtns {
+  width: 80%;
+  justify-content: space-around;
 }/*# sourceMappingURL=style.css.map */

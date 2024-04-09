@@ -15,6 +15,9 @@ let battleListDiv = document.querySelector("#battleListDiv");
 let compareDiv = document.querySelector("#compare");
 let battleDiv = document.querySelector("#battle");
 let startBattleBtn = document.querySelector("#startBattleBtn");
+let battleField = document.querySelector("#battleField");
+let attackA = document.querySelector("#attackA");
+let attackB = document.querySelector("#attackB");
 
 ///////////////// Class /////////////////
 class Pokemon {
@@ -43,17 +46,20 @@ class Pokemon {
     this.specialDefence = specialDefence;
     this.speed = speed;
   }
+
   compare() {}
-  giveAttack() {
-    let giveDamage =
+
+  giveAttack(opponent) {
+    let damage =
       this.attack +
       this.specialAttack -
       (this.defence + this.specialDefence) * 0.8;
-    if (giveDamage < 10) {
-      giveDamage = 10;
-      return giveDamage;
+    if (damage < 10) {
+      damage = 10;
     }
-    return giveDamage;
+    console.log(`Damage`, damage);
+    opponent.hp -= damage;
+    return opponent.hp;
   }
 }
 
@@ -107,6 +113,19 @@ let getPolkemonList = async () => {
   });
 };
 
+//Render to Battle field
+let renderPlayer = (pokemon) => {
+  let playerDiv = document.createElement("div");
+  playerDiv.classList = "playerDiv flex-row";
+  playerDiv.innerHTML = `
+    <div class="playerStatus">
+        <p>${pokemon.name}</p>
+        <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="100"></progress>
+    </div>
+    <img class="playerImg" id="${pokemon.name}Img" src="${pokemon.img}" alt="playerImage">`;
+  battleField.append(playerDiv);
+};
+
 ///////////////// CTA /////////////////
 
 //Render pokemon drop list by refresh
@@ -115,8 +134,7 @@ getPolkemonList();
 // CTA: Choose pokemon to pokedex
 chooseBtn.addEventListener("click", async () => {
   if (selectPokemon.value) {
-    let pokemonData = await getData(selectPokemon.value);
-    console.log(pokemonData);
+    let data = await getData(selectPokemon.value);
 
     let name = data.forms[0].name.toUpperCase();
     //   let type = data;
@@ -144,7 +162,6 @@ chooseBtn.addEventListener("click", async () => {
       specialDefence,
       speed
     );
-    console.log(pokemon);
 
     //DOM
     if (pokemon != null) {
@@ -157,6 +174,7 @@ chooseBtn.addEventListener("click", async () => {
       <p>Hp: ${pokemon.hp}</p>
       <p>Attack: ${pokemon.attack}</p>`;
 
+      statusDiv.innerHTML = "";
       renderStat("HP", pokemon.hp);
       renderStat("Attack", pokemon.attack);
       renderStat("Defence", pokemon.defence);
@@ -224,7 +242,7 @@ chooseBtn.addEventListener("click", async () => {
   }
 });
 
-// Battle
+// Open Battle Field
 startBattleBtn.addEventListener("click", () => {
   //DisplayNone
   selectDiv.classList = "displayNone";
@@ -233,46 +251,39 @@ startBattleBtn.addEventListener("click", () => {
   compareDiv.classList = "displayNone";
   startBattleBtn.classList = "displayNone";
 
+  //Open battleField
+  battleDiv.classList = "flex-column display";
+
   // Render Battle Field
   console.log(battleList);
   battleList.forEach((pokemon) => {
-    let playerDiv = document.createElement("div");
-    playerDiv.classList = "playerDiv flex-row";
-    playerDiv.innerHTML = `
-      <div class="playerStatus">
-          <p>${pokemon.name}</p>
-          <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="100"></progress>
-      </div>
-      <img class="playerImg" id="${pokemon.name}" src="${pokemon.img}" alt="playerImage">`;
-    battleDiv.append(playerDiv);
+    renderPlayer(pokemon);
   });
 
-  let comment = document.createElement("div");
-  comment.classList = "comment flex-column";
-  comment.innerText = `Let's battle! Attack by clicking Pokemon`;
-  battleDiv.append(comment);
-
-  // let players = document.querySelectorAll(".playerImg");
-  // let playerA = players[0];
-  // let playerB = players[1];
-
-  // playerA.addEventListener("click",()=>{
-  //   playerA.id.giveAttack()
-  // })
-
-  // console.log(playerA);
-  // console.log(playerB);
+  //Put name on Btn
+  attackA.innerText = `${battleList[1].name}'s Attack!`;
+  attackB.innerText = `${battleList[0].name}'s Attack!`;
 });
 
-//Render to Battle field
-// let renderPlayer = (pokemon) => {
-//   let playerDiv = document.createElement("div");
-//   playerDiv.classList = "playerDiv flex-row";
-//   playerDiv.innerHTML = `
-//     <div class="playerStatus">
-//         <p>${pokemon.name}</p>
-//         <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="100"></progress>
-//     </div>
-//     <img class="playerImg" id="${pokemon.name}Img" src="${pokemon.img}" alt="playerImage">`;
-//   battleDiv.append(playerDiv);
-// };
+// Attack
+attackA.addEventListener("click", () => {
+  console.log(battleList[0].hp);
+  battleList[1].giveAttack(battleList[0]);
+  console.log(battleList[0].hp);
+
+  battleField.innerHTML = "";
+  battleList.forEach((pokemon) => {
+    renderPlayer(pokemon);
+  });
+});
+
+attackB.addEventListener("click", () => {
+  console.log(battleList[1].hp);
+  battleList[0].giveAttack(battleList[1]);
+  console.log(battleList[1].hp);
+
+  battleField.innerHTML = "";
+  battleList.forEach((pokemon) => {
+    renderPlayer(pokemon);
+  });
+});

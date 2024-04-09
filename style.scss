@@ -48,7 +48,7 @@ body {
     display: none;
 }
 .display {
-    display: block;
+    display: flex;
 }
 
 button{
@@ -131,28 +131,37 @@ h1{
 }
 
 #battle{
-    .playerDiv{
-        width: 80%;
-        align-items: flex-start;
-        justify-content: space-between;
-        .playerStatus{
-            width: 50%;
+    width: 100%;
+    #battleField{
+        width: 100%;
+        .playerDiv{
+            width: 80%;
+            align-items: flex-start;
+            justify-content: space-between;
+            .playerStatus{
+                width: 50%;
+            }
+            .playerImg{
+                width: 30%;
+            }
         }
-        .playerImg{
-            width: 30%;
+        .playerDiv:nth-child(2) {
+            flex-direction: row-reverse;
+            align-items: flex-end;
         }
     }
-    .playerDiv:nth-child(3) {
-        flex-direction: row-reverse;
-        align-items: flex-end;
-    }
-    .comment{
+    #comment{
         margin-top: 20px;
         width: 80%;
         aspect-ratio: 3 / 1;
+        justify-content: space-around;
         border: 5px double var(--color-4);
         border-radius: 5px;
         p{            
+        }
+        #attackBtns{
+            width: 80%;
+            justify-content: space-around;
         }
     }
 }
