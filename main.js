@@ -131,6 +131,7 @@ let renderPlayer = (pokemon) => {
 //Render pokemon drop list by refresh
 getPolkemonList();
 
+let pokemon;
 // CTA: Choose pokemon to pokedex
 chooseBtn.addEventListener("click", async () => {
   if (selectPokemon.value) {
@@ -149,7 +150,7 @@ chooseBtn.addEventListener("click", async () => {
     let speed = data.stats[5].base_stat;
 
     //Create instanse
-    let pokemon = new Pokemon(
+    let NewPokemon = new Pokemon(
       name,
       // type,
       img,
@@ -162,6 +163,8 @@ chooseBtn.addEventListener("click", async () => {
       specialDefence,
       speed
     );
+
+    pokemon = NewPokemon;
 
     //DOM
     if (pokemon != null) {
@@ -181,16 +184,19 @@ chooseBtn.addEventListener("click", async () => {
       renderStat("S-Attack", pokemon.specialAttack);
       renderStat("S-Defence", pokemon.specialDefence);
       renderStat("Speed", pokemon.speed);
+
+      console.log(pokemon);
     }
 
     //CTA: Add to Battle List
     addToBattleList.addEventListener("click", () => {
       if (pokemon != null) {
+        // DOM (screen)
         description.innerHTML = `${pokemon.name}, I CHOOSE YOU!`;
         pokemonImg.classList = "displayNone";
         statusDiv.innerHTML = "";
 
-        //DOM
+        //DOM (battleList)
         let chosenPokemon = document.createElement("div");
         chosenPokemon.classList = "flex-column";
         let p = document.createElement("p");
@@ -213,6 +219,7 @@ chooseBtn.addEventListener("click", async () => {
 
         if (battleListDiv.childElementCount < 2) {
           if (battleList.length > 0) {
+            //BattleListの中に選択済みポケモンがいるか確認
             battleList.forEach((p) => {
               if (p.name !== pokemon.name) {
                 battleListDiv.append(chosenPokemon);
