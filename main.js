@@ -13,6 +13,8 @@ let pokemonA = document.querySelector("#pokemonA");
 let pokemonB = document.querySelector("#pokemonB");
 let battleListDiv = document.querySelector("#battleListDiv");
 let compareDiv = document.querySelector("#compare");
+let compareBtn = document.querySelector("#compareBtn");
+let compareStatus = document.querySelector("#compareStatus");
 let battleDiv = document.querySelector("#battle");
 let startBattleBtn = document.querySelector("#startBattleBtn");
 let battleField = document.querySelector("#battleField");
@@ -47,7 +49,20 @@ class Pokemon {
     this.speed = speed;
   }
 
-  compare() {}
+  static compare(status, pokemonA, pokemonB) {
+    let result;
+    if (pokemonA[status] > pokemonB[status]) {
+      result = `${pokemonA.name} is higher.`;
+    } else if (pokemonA[status] < pokemonB[status]) {
+      result = `${pokemonB.name} is higher.`;
+    } else {
+      result = `Even`;
+    }
+
+    let resultText = document.createElement("div");
+    resultText.innerHTML = `<span>${status}: </span><span>${result}</span>`;
+    compareStatus.append(resultText);
+  }
 
   giveAttack(opponent) {
     let damage =
@@ -131,8 +146,8 @@ let renderPlayer = (pokemon) => {
 //Render pokemon drop list by refresh
 getPolkemonList();
 
-let pokemon;
 // CTA: Choose pokemon to pokedex
+let pokemon;
 chooseBtn.addEventListener("click", async () => {
   if (selectPokemon.value) {
     let data = await getData(selectPokemon.value);
@@ -167,29 +182,26 @@ chooseBtn.addEventListener("click", async () => {
     pokemon = NewPokemon;
 
     //DOM
-    if (pokemon != null) {
-      pokemonImg.classList = "display";
-      pokemonImg.src = pokemon.img;
-      description.innerHTML = `
+    pokemonImg.classList = "display";
+    pokemonImg.src = pokemon.img;
+    description.innerHTML = `
       <p>Name: ${pokemon.name}</p>
       <p>Weight: ${pokemon.weight}</p>
       <p>Height: ${pokemon.height}</p>
       <p>Hp: ${pokemon.hp}</p>
       <p>Attack: ${pokemon.attack}</p>`;
 
-      statusDiv.innerHTML = "";
-      renderStat("HP", pokemon.hp);
-      renderStat("Attack", pokemon.attack);
-      renderStat("Defence", pokemon.defence);
-      renderStat("S-Attack", pokemon.specialAttack);
-      renderStat("S-Defence", pokemon.specialDefence);
-      renderStat("Speed", pokemon.speed);
-
-      console.log(pokemon);
-    }
+    statusDiv.innerHTML = "";
+    renderStat("HP", pokemon.hp);
+    renderStat("Attack", pokemon.attack);
+    renderStat("Defence", pokemon.defence);
+    renderStat("S-Attack", pokemon.specialAttack);
+    renderStat("S-Defence", pokemon.specialDefence);
+    renderStat("Speed", pokemon.speed);
 
     //CTA: Add to Battle List
     addToBattleList.addEventListener("click", () => {
+      //前に使用したポケモンをはじく
       if (pokemon != null) {
         // DOM (screen)
         description.innerHTML = `${pokemon.name}, I CHOOSE YOU!`;
@@ -205,7 +217,7 @@ chooseBtn.addEventListener("click", async () => {
         chosenPokemonImg.src = pokemon.img;
         //Delete
         let deteteBtn = document.createElement("button");
-        deteteBtn.innerText = "delete";
+        deteteBtn.innerText = "Back to Ball";
         deteteBtn.addEventListener("click", () => {
           // Delete from DOM
           chosenPokemon.remove();
@@ -242,34 +254,51 @@ chooseBtn.addEventListener("click", async () => {
           );
         }
       }
+      //battleListに追加後、後ではじけるようNullに変える。（pokemon値を新しいポケモンに使い回せるようにする）
       pokemon = null;
+      // console.log(pokemon);
     });
   } else {
     alert("Choose a pokemon by the dropdown-List");
   }
 });
 
+// Compare Pokemon
+compareBtn.addEventListener("click", () => {
+  compareStatus.innerHTML = "";
+  Pokemon.compare("hp", battleList[0], battleList[1]);
+  Pokemon.compare("attack", battleList[0], battleList[1]);
+  Pokemon.compare("defence", battleList[0], battleList[1]);
+  Pokemon.compare("s-attack", battleList[0], battleList[1]);
+  Pokemon.compare("s-defence", battleList[0], battleList[1]);
+  Pokemon.compare("speed", battleList[0], battleList[1]);
+});
+
 // Open Battle Field
 startBattleBtn.addEventListener("click", () => {
-  //DisplayNone
-  selectDiv.classList = "displayNone";
-  pokedex.classList = "displayNone";
-  battleListDiv.classList = "displayNone";
-  compareDiv.classList = "displayNone";
-  startBattleBtn.classList = "displayNone";
+  if (battleList.length >= 2) {
+    //DisplayNone
+    selectDiv.classList = "displayNone";
+    pokedex.classList = "displayNone";
+    battleListDiv.classList = "displayNone";
+    compareDiv.classList = "displayNone";
+    startBattleBtn.classList = "displayNone";
 
-  //Open battleField
-  battleDiv.classList = "flex-column display";
+    //Open battleField
+    battleDiv.classList = "flex-column display";
 
-  // Render Battle Field
-  console.log(battleList);
-  battleList.forEach((pokemon) => {
-    renderPlayer(pokemon);
-  });
+    // Render Battle Field
+    console.log(battleList);
+    battleList.forEach((pokemon) => {
+      renderPlayer(pokemon);
+    });
 
-  //Put name on Btn
-  attackA.innerText = `${battleList[1].name}'s Attack!`;
-  attackB.innerText = `${battleList[0].name}'s Attack!`;
+    //Put name on Btn
+    attackA.innerText = `${battleList[1].name}'s Attack!`;
+    attackB.innerText = `${battleList[0].name}'s Attack!`;
+  } else {
+    alert("Choose 2 Pokemons");
+  }
 });
 
 // Attack

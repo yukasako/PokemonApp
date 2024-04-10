@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="flex-column">
-    <h1>Let's battle!</h1>
     <div id="select">
       <select name="selectPokemon" id="selectPokemon">
         <option value="">Choose Pokemon</option>
@@ -34,20 +33,19 @@
           <img id="pokemonImg" src="" alt="" />
           <div id="description"></div>
         </div>
-        <div id="status"></div>
+        <div id="status">Choose a pokemon by the drop-down list above</div>
       </div>
-      <div class="buttons">
+      <div class="buttons flex-row">
         <button id="addToBattleList">I CHOOSE YOU!</button>
         <img src="" alt="crossImg" />
       </div>
     </div>
     <div id="battleListDiv" class="flex-row"></div>
-    <div id="compare">
+    <div id="compare" class="flex-column">
       <button id="compareBtn">Compare Pokemon</button>
       <article id="compareStatus"></article>
-      <p id="statusSummary"></p>
     </div>
-    <button id="startBattleBtn">Let's battle!</button>
+    <button id="startBattleBtn">Let's Battle!</button>
     <div id="battle" class="flex-column displayNone">
       <div id="battleField" class="flex-column"></div>
       <div id="comment" class="flex-column">

@@ -24,6 +24,7 @@ body {
   background: var(--color-1);
   text-align: center;
   gap: 20px;
+  padding-top: 5vh;
 }
 
 .flex {
@@ -94,10 +95,10 @@ h1 {
   padding: 20px;
   gap: 10px;
 }
-#pokedex #screen #pokemonImg {
+#pokedex #screen div #pokemonImg {
   width: 50%;
 }
-#pokedex #screen #description {
+#pokedex #screen div #description {
   text-align: left;
 }
 #pokedex #screen #status {
@@ -114,14 +115,39 @@ h1 {
 #pokedex .buttons {
   padding: 50px;
   width: 80%;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 
+#battleListDiv {
+  width: 80%;
+  justify-content: space-around;
+}
+#battleListDiv div {
+  width: 40%;
+}
 #battleListDiv div img {
-  width: 50%;
-  min-width: 150px;
+  width: 100%;
+}
+
+#compare {
+  width: 80%;
+}
+#compare #compareStatus {
+  width: 100%;
+}
+#compare #compareStatus div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+#compare #compareStatus div span:first-child {
+  width: 40%;
+  text-align: center;
+}
+#compare #compareStatus div span:last-child {
+  width: 60%;
+  text-align: left;
 }
 
 #battle {
