@@ -262,7 +262,7 @@ chooseBtn.addEventListener("click", async () => {
           );
           console.log(battleList); // 確認用
         });
-        chosenPokemon.append(p, chosenPokemonImg, deteteBtn);
+        chosenPokemon.append(p, deteteBtn, chosenPokemonImg);
 
         if (battleListDiv.childElementCount < 2) {
           if (battleList.length > 0) {
