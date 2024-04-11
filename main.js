@@ -92,11 +92,12 @@ class Pokemon {
     opponent.hp -= damage;
 
     // DOM
-    battleField.innerHTML = "";
-    battleList.forEach((pokemon) => {
-      renderPlayer(pokemon);
-    });
+    let progress = document.querySelector(`#${opponent.name}HP`);
+    progress.value = opponent.hp;
 
+    if (opponent.hp < 0) {
+      opponent.hp = 0;
+    }
     comment.innerText = `
     ${this.name} used ${this.move}! \n
     ${opponent.name} got ${Math.floor(damage)} damage!\n
@@ -164,7 +165,7 @@ let renderPlayer = (pokemon) => {
   playerDiv.innerHTML = `
     <div class="playerStatus">
         <p>${pokemon.name}</p>
-        <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="100"></progress>
+        <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="${pokemon.hp}"></progress>
     </div>
     <img class="playerImg" id="${pokemon.name}Img" src="${pokemon.img}" alt="playerImage">`;
   battleField.append(playerDiv);
@@ -371,18 +372,29 @@ startBattleBtn.addEventListener("click", () => {
   } else {
     attackA.disabled = true;
     attackB.disabled = false;
+    comment.innerText = `
+    Lets Battle! \n 
+    ${pokemonB.name} is faster than ${pokemonA.name}.
+    `;
   }
 
   attackA.addEventListener("click", () => {
     pokemonA.giveAttack(pokemonB);
     if (pokemonB.hp <= 0) {
-      comment.innerText = `
+      let result = document.createElement("p");
+      result.style.color = "red";
+      result.innerText = `
         ${pokemonB.name} fainted!\n
         ${pokemonA.name} wins!`;
+      comment.append(result);
 
       //断末魔
-      let cry = new Audio(pokemonA.cry);
+      let cry = new Audio(pokemonB.cry);
       cry.play();
+
+      //消える
+      let pokemonImg = document.querySelector(`#${pokemonB.name}Img`);
+      pokemonImg.style.opacity = "50%";
 
       //Replay
       attackBtns.innerHTML = "";
@@ -400,13 +412,20 @@ startBattleBtn.addEventListener("click", () => {
   attackB.addEventListener("click", () => {
     pokemonB.giveAttack(pokemonA);
     if (pokemonA.hp <= 0) {
-      comment.innerText = `
+      let result = document.createElement("p");
+      result.style.color = "red";
+      result.innerText = `
         ${pokemonA.name} fainted!\n
         ${pokemonB.name} wins!`;
+      comment.append(result);
 
       //断末魔
       let cry = new Audio(pokemonA.cry);
       cry.play();
+
+      //消える
+      let pokemonImg = document.querySelector(`#${pokemonA.name}Img`);
+      pokemonImg.style.opacity = "50%";
 
       //Replay
       attackBtns.innerHTML = "";

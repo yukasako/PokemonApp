@@ -8,9 +8,9 @@
     --color-2: #c3c3c3;
     --color-3: #f4625d;
     --color-4: #2c2c2f;
-    --color-5: #000000;
+    --color-5: #5B5B5B;
     --color-modal: hsla(0, 0%, 0%, 0.8);
-    --shadow-1: rgba(0, 0, 0, 0.6) 0px 3px 10px;
+    --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
     --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
 }
 
@@ -54,11 +54,20 @@ body {
 }
 
 button{
-    padding: 3px;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 10px;
+    border-width: 1px;
 }
 
 h1{
     margin: 30px;
+}
+
+#select{
+    #selectPokemon{
+        height: 3vh;
+    }
 }
 
 #pokedex{
@@ -120,8 +129,20 @@ h1{
     }
     .buttons{
         padding: 50px;
-        width: 80%;
+        width: 100%;
         justify-content: space-between;
+        #addToBattleList{
+            width: 50%;
+            height: 6vh;
+            background-color: var(--color-5);
+            border-radius: 20px;
+            font-size: large;
+            font-weight: bold;
+            color: var(--color-1);
+        }
+        img{
+            height: 10vh;
+        }
     }
 }
 
@@ -168,7 +189,7 @@ h1{
             .playerStatus{
                 width: 40%;
                 progress{
-                    width: 100%
+                    width: 100%;
                 };
             }
             .playerImg{
