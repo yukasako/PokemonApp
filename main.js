@@ -20,8 +20,10 @@ let pokemonBwin = 0;
 let battleDiv = document.querySelector("#battle");
 let startBattleBtn = document.querySelector("#startBattleBtn");
 let battleField = document.querySelector("#battleField");
+let comment = document.querySelector("#comment");
 let attackA = document.querySelector("#attackA");
 let attackB = document.querySelector("#attackB");
+let attackBtns = document.querySelector("#attackBtns");
 
 ///////////////// Class /////////////////
 class Pokemon {
@@ -36,7 +38,9 @@ class Pokemon {
     defence,
     specialAttack,
     specialDefence,
-    speed
+    speed,
+    move,
+    cry
   ) {
     this.name = name;
     // this.type = type;
@@ -49,6 +53,8 @@ class Pokemon {
     this.specialAttack = specialAttack;
     this.specialDefence = specialDefence;
     this.speed = speed;
+    this.move = move;
+    this.cry = cry;
   }
 
   static compare(status, pokemonA, pokemonB) {
@@ -84,6 +90,19 @@ class Pokemon {
     }
     console.log(`Damage`, damage);
     opponent.hp -= damage;
+
+    // DOM
+    battleField.innerHTML = "";
+    battleList.forEach((pokemon) => {
+      renderPlayer(pokemon);
+    });
+
+    comment.innerText = `
+    ${this.name} used ${this.move}! \n
+    ${opponent.name} got ${Math.floor(damage)} damage!\n
+    ${opponent.name} remaining HP: ${Math.floor(opponent.hp)}
+    `;
+
     return opponent.hp;
   }
 }
@@ -161,6 +180,7 @@ let pokemon;
 chooseBtn.addEventListener("click", async () => {
   if (selectPokemon.value) {
     let data = await getData(selectPokemon.value);
+    console.log(data);
 
     let name = data.forms[0].name.toUpperCase();
     //   let type = data;
@@ -173,6 +193,8 @@ chooseBtn.addEventListener("click", async () => {
     let specialAttack = data.stats[3].base_stat;
     let specialDefence = data.stats[4].base_stat;
     let speed = data.stats[5].base_stat;
+    let move = data.moves[0].move.name;
+    let cry = data.cries.legacy;
 
     //Create instanse
     let NewPokemon = new Pokemon(
@@ -186,7 +208,9 @@ chooseBtn.addEventListener("click", async () => {
       defence,
       specialAttack,
       specialDefence,
-      speed
+      speed,
+      move,
+      cry
     );
 
     pokemon = NewPokemon;
@@ -258,10 +282,15 @@ chooseBtn.addEventListener("click", async () => {
             battleList.push(pokemon);
             console.log(battleList);
           }
+          // Cry
+          let cry = new Audio(pokemon.cry);
+          cry.play();
         } else {
           alert(
             "You already chose 2 pokemons. Back a pokemon to the ball if you want to add another"
           );
+          description.innerText =
+            "Choose a pokemon by the drop-down list above";
         }
       }
       if (battleList.length >= 2) {
@@ -273,7 +302,6 @@ chooseBtn.addEventListener("click", async () => {
       }
       //battleListに追加後、後ではじけるようNullに変える。（pokemon値を新しいポケモンに使い回せるようにする）
       pokemon = null;
-      // console.log(pokemon);
     });
   } else {
     alert("Choose a pokemon by the dropdown-List");
@@ -322,35 +350,74 @@ startBattleBtn.addEventListener("click", () => {
   battleDiv.classList = "flex-column display";
 
   // Render Battle Field
-  console.log(battleList);
   battleList.forEach((pokemon) => {
     renderPlayer(pokemon);
   });
 
+  let pokemonA = battleList[1];
+  let pokemonB = battleList[0];
   //Put name on Btn
-  attackA.innerText = `${battleList[1].name}'s Attack!`;
-  attackB.innerText = `${battleList[0].name}'s Attack!`;
-});
+  attackA.innerText = `${pokemonA.name}'s Attack!`;
+  attackB.innerText = `${pokemonB.name}'s Attack!`;
 
-// Attack
-attackA.addEventListener("click", () => {
-  console.log(battleList[0].hp);
-  battleList[1].giveAttack(battleList[0]);
-  console.log(battleList[0].hp);
+  // 早い方のボタンをオープン
+  if (pokemonA.speed > pokemonB.speed) {
+    attackA.disabled = false;
+    attackB.disabled = true;
+    comment.innerText = `
+    Lets Battle! \n 
+    ${pokemonA.name} is faster than ${pokemonB.name}.
+    `;
+  } else {
+    attackA.disabled = true;
+    attackB.disabled = false;
+  }
 
-  battleField.innerHTML = "";
-  battleList.forEach((pokemon) => {
-    renderPlayer(pokemon);
+  attackA.addEventListener("click", () => {
+    pokemonA.giveAttack(pokemonB);
+    if (pokemonB.hp <= 0) {
+      comment.innerText = `
+        ${pokemonB.name} fainted!\n
+        ${pokemonA.name} wins!`;
+
+      //断末魔
+      let cry = new Audio(pokemonA.cry);
+      cry.play();
+
+      //Replay
+      attackBtns.innerHTML = "";
+      let replay = document.createElement("button");
+      replay.innerText = "Replay";
+      replay.addEventListener("click", () => {
+        window.location.reload();
+      });
+      attackBtns.append(replay);
+    }
+    attackA.disabled = true;
+    attackB.disabled = false;
   });
-});
 
-attackB.addEventListener("click", () => {
-  console.log(battleList[1].hp);
-  battleList[0].giveAttack(battleList[1]);
-  console.log(battleList[1].hp);
+  attackB.addEventListener("click", () => {
+    pokemonB.giveAttack(pokemonA);
+    if (pokemonA.hp <= 0) {
+      comment.innerText = `
+        ${pokemonA.name} fainted!\n
+        ${pokemonB.name} wins!`;
 
-  battleField.innerHTML = "";
-  battleList.forEach((pokemon) => {
-    renderPlayer(pokemon);
+      //断末魔
+      let cry = new Audio(pokemonA.cry);
+      cry.play();
+
+      //Replay
+      attackBtns.innerHTML = "";
+      let replay = document.createElement("button");
+      replay.innerText = "Replay";
+      replay.addEventListener("click", () => {
+        window.location.reload();
+      });
+      attackBtns.append(replay);
+    }
+    attackB.disabled = true;
+    attackA.disabled = false;
   });
 });

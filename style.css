@@ -171,7 +171,7 @@ h1 {
   flex-direction: row-reverse;
   align-items: flex-end;
 }
-#battle #comment {
+#battle #commentField {
   margin-top: 20px;
   width: 80%;
   aspect-ratio: 3/1;
@@ -179,7 +179,8 @@ h1 {
   border: 5px double var(--color-4);
   border-radius: 5px;
 }
-#battle #comment #attackBtns {
+#battle #commentField #attackBtns {
   width: 80%;
   justify-content: space-around;
+  margin: 30px;
 }/*# sourceMappingURL=style.css.map */
