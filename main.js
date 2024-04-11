@@ -1,5 +1,4 @@
 ///////////////// Global Variables /////////////////
-let battleList = [];
 let selectDiv = document.querySelector("#select");
 let selectPokemon = document.querySelector("#selectPokemon");
 let chooseBtn = document.querySelector("#choose");
@@ -8,6 +7,7 @@ let screen = document.querySelector("#screen");
 let pokemonImg = document.querySelector("#pokemonImg");
 let description = document.querySelector("#description");
 let statusDiv = document.querySelector("#status");
+let battleList = [];
 let addToBattleList = document.querySelector("#addToBattleList");
 let pokemonA = document.querySelector("#pokemonA");
 let pokemonB = document.querySelector("#pokemonB");
@@ -15,6 +15,8 @@ let battleListDiv = document.querySelector("#battleListDiv");
 let compareDiv = document.querySelector("#compare");
 let compareBtn = document.querySelector("#compareBtn");
 let compareStatus = document.querySelector("#compareStatus");
+let pokemonAwin = 0;
+let pokemonBwin = 0;
 let battleDiv = document.querySelector("#battle");
 let startBattleBtn = document.querySelector("#startBattleBtn");
 let battleField = document.querySelector("#battleField");
@@ -50,17 +52,25 @@ class Pokemon {
   }
 
   static compare(status, pokemonA, pokemonB) {
-    let result;
+    let resultText = document.createElement("div");
+    let higherPokemon = document.createElement("span");
+    let result = document.createElement("span");
+
     if (pokemonA[status] > pokemonB[status]) {
-      result = `${pokemonA.name} is higher.`;
+      higherPokemon.innerText = pokemonA.name;
+      higherPokemon.style.color = "red";
+      result = ` wins in ${status}`;
+      pokemonAwin++;
     } else if (pokemonA[status] < pokemonB[status]) {
-      result = `${pokemonB.name} is higher.`;
+      higherPokemon.innerText = pokemonB.name;
+      higherPokemon.style.color = "blue";
+      result = ` wins in ${status}`;
+      pokemonBwin++;
     } else {
-      result = `Even`;
+      result = `Even in ${status}`;
     }
 
-    let resultText = document.createElement("div");
-    resultText.innerHTML = `<span>${status}: </span><span>${result}</span>`;
+    resultText.append(higherPokemon, result);
     compareStatus.append(resultText);
   }
 
@@ -203,7 +213,7 @@ chooseBtn.addEventListener("click", async () => {
     addToBattleList.addEventListener("click", () => {
       //前に使用したポケモンをはじく
       if (pokemon != null) {
-        // DOM (screen)
+        // DOM Reset (screen)
         description.innerHTML = `${pokemon.name}, I CHOOSE YOU!`;
         pokemonImg.classList = "displayNone";
         statusDiv.innerHTML = "";
@@ -250,9 +260,16 @@ chooseBtn.addEventListener("click", async () => {
           }
         } else {
           alert(
-            "You already chose 2 pokemon. Delete a pokemon if you want to add another"
+            "You already chose 2 pokemons. Back a pokemon to the ball if you want to add another"
           );
         }
+      }
+      if (battleList.length >= 2) {
+        compareBtn.classList = "display";
+        startBattleBtn.classList = "display";
+      } else {
+        compareBtn.classList = "displayNone";
+        startBattleBtn.classList = "displayNone";
       }
       //battleListに追加後、後ではじけるようNullに変える。（pokemon値を新しいポケモンに使い回せるようにする）
       pokemon = null;
@@ -265,40 +282,54 @@ chooseBtn.addEventListener("click", async () => {
 
 // Compare Pokemon
 compareBtn.addEventListener("click", () => {
+  pokemonAwin = 0;
+  pokemonBwin = 0;
   compareStatus.innerHTML = "";
+  // Pokemon.compare("height", battleList[0], battleList[1]);
+  // Pokemon.compare("weight", battleList[0], battleList[1]);
   Pokemon.compare("hp", battleList[0], battleList[1]);
   Pokemon.compare("attack", battleList[0], battleList[1]);
   Pokemon.compare("defence", battleList[0], battleList[1]);
   Pokemon.compare("s-attack", battleList[0], battleList[1]);
   Pokemon.compare("s-defence", battleList[0], battleList[1]);
   Pokemon.compare("speed", battleList[0], battleList[1]);
+  console.log(pokemonAwin, pokemonBwin);
+
+  let summaryText = document.createElement("p");
+  if (pokemonAwin > pokemonBwin) {
+    summaryText.innerText = `
+    ${battleList[0].name} wins in the most status`;
+  } else if (pokemonAwin < pokemonBwin) {
+    summaryText.innerText = `
+    ${battleList[1].name} wins in the most status`;
+  } else {
+    summaryText.innerText = `
+    ${battleList[0].name} and ${battleList[1].name} are mostly even in status. \n Let's see which on wins.`;
+  }
+  compareStatus.append(summaryText);
 });
 
 // Open Battle Field
 startBattleBtn.addEventListener("click", () => {
-  if (battleList.length >= 2) {
-    //DisplayNone
-    selectDiv.classList = "displayNone";
-    pokedex.classList = "displayNone";
-    battleListDiv.classList = "displayNone";
-    compareDiv.classList = "displayNone";
-    startBattleBtn.classList = "displayNone";
+  //DisplayNone
+  selectDiv.classList = "displayNone";
+  pokedex.classList = "displayNone";
+  battleListDiv.classList = "displayNone";
+  compareDiv.classList = "displayNone";
+  startBattleBtn.classList = "displayNone";
 
-    //Open battleField
-    battleDiv.classList = "flex-column display";
+  //Open battleField
+  battleDiv.classList = "flex-column display";
 
-    // Render Battle Field
-    console.log(battleList);
-    battleList.forEach((pokemon) => {
-      renderPlayer(pokemon);
-    });
+  // Render Battle Field
+  console.log(battleList);
+  battleList.forEach((pokemon) => {
+    renderPlayer(pokemon);
+  });
 
-    //Put name on Btn
-    attackA.innerText = `${battleList[1].name}'s Attack!`;
-    attackB.innerText = `${battleList[0].name}'s Attack!`;
-  } else {
-    alert("Choose 2 Pokemons");
-  }
+  //Put name on Btn
+  attackA.innerText = `${battleList[1].name}'s Attack!`;
+  attackB.innerText = `${battleList[0].name}'s Attack!`;
 });
 
 // Attack
