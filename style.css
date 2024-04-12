@@ -65,14 +65,16 @@ h1 {
   margin: 30px;
 }
 
-#select {
+#firstStage #pokedexes {
+  gap: 10px;
+}
+#firstStage #pokedexes #select {
   margin-top: 5vh;
 }
-#select #selectPokemon {
+#firstStage #pokedexes #select #selectPokemon {
   height: 3vh;
 }
-
-#pokedex {
+#firstStage #pokedexes #pokedex {
   background: var(--color-3);
   width: 80vw;
   max-width: 500px;
@@ -81,7 +83,7 @@ h1 {
   border-radius: 30px;
   box-shadow: var(--shadow-1);
 }
-#pokedex #pokedexHeader {
+#firstStage #pokedexes #pokedex #pokedexHeader {
   width: 100%;
   height: 10vh;
   background-color: var(--color-3);
@@ -89,14 +91,14 @@ h1 {
   border-radius: 30px;
   display: flex;
 }
-#pokedex #pokedexHeader .headerLeft {
+#firstStage #pokedexes #pokedex #pokedexHeader .headerLeft {
   flex: 0 0 auto;
   height: 100%;
 }
-#pokedex #pokedexHeader .headerRight {
+#firstStage #pokedexes #pokedex #pokedexHeader .headerRight {
   flex: 1 1 auto;
 }
-#pokedex #screen {
+#firstStage #pokedexes #pokedex #screen {
   width: 80%;
   aspect-ratio: 1/1;
   color: var(--color-1);
@@ -107,29 +109,29 @@ h1 {
   padding: 20px;
   gap: 10px;
 }
-#pokedex #screen div #pokemonImg {
+#firstStage #pokedexes #pokedex #screen div #pokemonImg {
   width: 50%;
 }
-#pokedex #screen div #description {
+#firstStage #pokedexes #pokedex #screen div #description {
   text-align: left;
 }
-#pokedex #screen #status {
+#firstStage #pokedexes #pokedex #screen #status {
   width: 100%;
 }
-#pokedex #screen #status div {
+#firstStage #pokedexes #pokedex #screen #status div {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-#pokedex #screen #status div progress {
+#firstStage #pokedexes #pokedex #screen #status div progress {
   width: 60%;
 }
-#pokedex .buttons {
+#firstStage #pokedexes #pokedex .buttons {
   padding: 50px;
   width: 100%;
   justify-content: space-between;
 }
-#pokedex .buttons #addToBattleList {
+#firstStage #pokedexes #pokedex .buttons #addToBattleList {
   width: 50%;
   height: 6vh;
   background-color: var(--color-5);
@@ -137,15 +139,17 @@ h1 {
   font-size: large;
   font-weight: bold;
 }
-#pokedex .buttons #addToBattleList a {
+#firstStage #pokedexes #pokedex .buttons #addToBattleList a {
   color: var(--color-1);
   text-decoration: none;
 }
-#pokedex .buttons img {
+#firstStage #pokedexes #pokedex .buttons img {
   height: 10vh;
 }
-
-#battleListDiv {
+#firstStage #bench {
+  gap: 2vh;
+}
+#firstStage #bench #battleListDiv {
   width: 80%;
   justify-content: space-around;
   background-image: url(./img/field.png);
@@ -155,41 +159,39 @@ h1 {
   background-color: rgba(255, 255, 255, 0.4);
   background-blend-mode: lighten;
 }
-#battleListDiv div {
+#firstStage #bench #battleListDiv div {
   width: 40%;
   margin-top: 5vh;
   font-weight: bold;
   font-size: larger;
 }
-#battleListDiv div img {
+#firstStage #bench #battleListDiv div img {
   width: 100%;
   margin-bottom: 3vh;
 }
-#battleListDiv div button {
+#firstStage #bench #battleListDiv div button {
   padding: 5px;
   border: none;
 }
-
-#compare {
+#firstStage #bench #compare {
   width: 80%;
   gap: 10px;
 }
-#compare #compareStatus {
+#firstStage #bench #compare #compareStatus {
   width: 100%;
 }
-#compare #compareStatus div span:first-child {
+#firstStage #bench #compare #compareStatus div span:first-child {
   width: 40%;
   text-align: right;
 }
-#compare #compareStatus div span:last-child {
+#firstStage #bench #compare #compareStatus div span:last-child {
   width: 60%;
   text-align: left;
 }
-
-#startBattleBtn {
+#firstStage #bench #startBattleBtn {
   margin-bottom: 5vh;
 }
-#startBattleBtn a {
+#firstStage #bench #startBattleBtn a {
   color: var(--color-6);
   text-decoration: none;
   font-size: larger;
@@ -283,4 +285,42 @@ h1 {
   }
 }
 
-/* Tablet *//*# sourceMappingURL=style.css.map */
+/* Tablet */
+@media screen and (min-width: 768px) {
+  #firstStage {
+    flex-direction: row;
+    align-items: start;
+  }
+  #firstStage #pokedexes {
+    margin-left: 30px;
+  }
+  #firstStage #pokedexes #pokedex {
+    width: 40vw;
+    max-width: 500px;
+  }
+  #firstStage #bench {
+    padding-top: 20vh;
+    width: 50vw;
+  }
+  #battle #battleField {
+    margin-bottom: -10vh;
+  }
+  #battle #battleField .playerDiv {
+    background-color: transparent;
+  }
+  #battle #battleField .playerDiv .playerImg {
+    max-width: 300px;
+    max-height: 300px;
+  }
+  #battle #battleField .playerDiv:nth-child(2) {
+    top: -10vh;
+  }
+  #battle #commentField {
+    width: 80%;
+    justify-content: flex-start;
+    aspect-ratio: auto;
+  }
+  #battle #commentField #comment {
+    margin: 10px;
+  }
+}/*# sourceMappingURL=style.css.map */

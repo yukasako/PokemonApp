@@ -64,144 +64,152 @@ h1{
     margin: 30px;
 }
 
-#select{
-    margin-top: 5vh;
-    #selectPokemon{
-        height: 3vh;
-    }
-}
-
-#pokedex{
-    background: var(--color-3);
-    width: 80vw;
-    max-width: 500px;
-    aspect-ratio: 3 / 4;
-    justify-content: space-between;
-    border-radius: 30px;
-    box-shadow: var(--shadow-1);
-
-    #pokedexHeader{
-        width: 100%;
-        height: 10vh;
-        background-color: var(--color-3);
-        position: relative;
-        border-radius: 30px;
-        display: flex;
-
-        .headerLeft{
-            flex: 0 0 auto; 
-            height: 100%;
-        }
-        .headerRight{
-            flex: 1 1 auto;
-        }
-    }
-    #screen{
-        width: 80%;
-        aspect-ratio: 1 / 1;
-        color: var(--color-1);
-        background: var(--color-4);
-        border: solid 15px var(--color-2);
-        border-radius: 10px;
-        margin-top: 2vh;
-        padding: 20px;
+#firstStage{
+    #pokedexes{
         gap: 10px;
-        div{
-            #pokemonImg{
-                width: 50%;
-            }
-            #description{
-                text-align: left;
+        #select{
+            margin-top: 5vh;
+            #selectPokemon{
+                height: 3vh;
             }
         }
-        #status{
-            width: 100%;
-            div{
+        
+        #pokedex{
+            background: var(--color-3);
+            width: 80vw;
+            max-width: 500px;
+            aspect-ratio: 3 / 4;
+            justify-content: space-between;
+            border-radius: 30px;
+            box-shadow: var(--shadow-1);
+        
+            #pokedexHeader{
                 width: 100%;
+                height: 10vh;
+                background-color: var(--color-3);
+                position: relative;
+                border-radius: 30px;
                 display: flex;
-                justify-content: space-between;
-                label{
+        
+                .headerLeft{
+                    flex: 0 0 auto; 
+                    height: 100%;
                 }
-                progress{
-                    width: 60%;
+                .headerRight{
+                    flex: 1 1 auto;
                 }
             }
-        }
-    }
-    .buttons{
-        padding: 50px;
-        width: 100%;
-        justify-content: space-between;
-        #addToBattleList{
-            width: 50%;
-            height: 6vh;
-            background-color: var(--color-5);
-            border-radius: 20px;
-            font-size: large;
-            font-weight: bold;
-            a{
+            #screen{
+                width: 80%;
+                aspect-ratio: 1 / 1;
                 color: var(--color-1);
-                text-decoration: none;
+                background: var(--color-4);
+                border: solid 15px var(--color-2);
+                border-radius: 10px;
+                margin-top: 2vh;
+                padding: 20px;
+                gap: 10px;
+                div{
+                    #pokemonImg{
+                        width: 50%;
+                    }
+                    #description{
+                        text-align: left;
+                    }
+                }
+                #status{
+                    width: 100%;
+                    div{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        label{
+                        }
+                        progress{
+                            width: 60%;
+                        }
+                    }
+                }
+            }
+            .buttons{
+                padding: 50px;
+                width: 100%;
+                justify-content: space-between;
+                #addToBattleList{
+                    width: 50%;
+                    height: 6vh;
+                    background-color: var(--color-5);
+                    border-radius: 20px;
+                    font-size: large;
+                    font-weight: bold;
+                    a{
+                        color: var(--color-1);
+                        text-decoration: none;
+                    }
+                }
+                img{
+                    height: 10vh;
+                }
             }
         }
-        img{
-            height: 10vh;
-        }
     }
-}
-
-#battleListDiv{
-    width: 80%;
-    justify-content: space-around;
-    background-image: url(./img/field.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 50% 100%;
-    background-color:rgba(255,255,255,0.4);
-    background-blend-mode: lighten;
-    div {
-        width: 40%;
-        margin-top: 5vh;
-        font-weight: bold;
-        font-size: larger;
-        img{
-            width: 100%;
-            margin-bottom: 3vh;
-        }
-        button{
-            padding: 5px;
-            border: none;
-        }
-    };
-}
-
-#compare{
-    width: 80%;
-    gap: 10px;
-    #compareBtn{
-    }
-    #compareStatus{
-        width: 100%;
-        div{
-            span:first-child{
+    #bench{
+        gap: 2vh;
+        #battleListDiv{
+            width: 80%;
+            justify-content: space-around;
+            background-image: url(./img/field.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: 50% 100%;
+            background-color:rgba(255,255,255,0.4);
+            background-blend-mode: lighten;
+            div {
                 width: 40%;
-                text-align: right;
+                margin-top: 5vh;
+                font-weight: bold;
+                font-size: larger;
+                img{
+                    width: 100%;
+                    margin-bottom: 3vh;
+                }
+                button{
+                    padding: 5px;
+                    border: none;
+                }
+            };
+        }
+        
+        #compare{
+            width: 80%;
+            gap: 10px;
+            #compareBtn{
             }
-            span:last-child{
-                width: 60%;
-                text-align: left;
+            #compareStatus{
+                width: 100%;
+                div{
+                    span:first-child{
+                        width: 40%;
+                        text-align: right;
+                    }
+                    span:last-child{
+                        width: 60%;
+                        text-align: left;
+                    }
+                }
             }
         }
-    }
-}
-
-#startBattleBtn{
-    margin-bottom: 5vh;
-    a{
-        color: var(--color-6);
-        text-decoration: none;
-        font-size: larger;
-        font-weight: bold;        
+        
+        #startBattleBtn{
+            margin-bottom: 5vh;
+            a{
+                color: var(--color-6);
+                text-decoration: none;
+                font-size: larger;
+                font-weight: bold;        
+            }
+        }
+    
     }
 }
 
@@ -289,8 +297,55 @@ h1{
 }
 
 /* Tablet */
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 768px) {
+    #firstStage{
+        flex-direction: row;
+        // justify-content: flex-start;
+        align-items: start;
+        #pokedexes{
+            margin-left: 30px;
+            #pokedex{
+                width: 40vw;
+                max-width: 500px;
+            }
+        }
+        #bench{
+            padding-top: 20vh;
+            width: 50vw;
+            #battleListDiv{
+            }
+        }
+    }
 
-  }
-  
-  
+    #battle{
+        #battleField{
+            margin-bottom: -10vh;
+            .playerDiv{
+                background-color: transparent;
+                .playerStatus{
+                    progress{
+                    };
+                }
+                .playerImg{
+                    max-width: 300px;
+                    max-height: 300px;
+                }
+            }
+            .playerDiv:nth-child(2) {
+                top: -10vh;
+                .playerStatus{
+                }
+            }
+        }
+        #commentField{
+            width: 80%;
+            justify-content: flex-start;
+            aspect-ratio: auto;
+            #comment{  
+                margin: 10px;
+            }
+            #attackBtns{
+            }
+        }
+    }
+}

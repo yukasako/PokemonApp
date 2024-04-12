@@ -8,48 +8,54 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="flex-column">
-    <div id="select">
-      <select name="selectPokemon" id="selectPokemon">
-        <option value="">Choose Pokemon</option>
-      </select>
-      <button id="choose">Display</button>
-    </div>
-    <div id="pokedex" class="flex-column">
-      <div id="pokedexHeader">
-        <img
-          class="headerLeft"
-          src="./img/headerLeft.png"
-          alt="pokedexHeader"
-        />
-        <img
-          class="headerRight"
-          src="./img/headerRight.png"
-          alt="pokedexHeader"
-        />
-        <div class="headerLeft"></div>
-      </div>
-      <div id="screen" class="flex-column">
-        <div class="flex-row">
-          <img id="pokemonImg" src="" alt="" />
-          <div id="description"></div>
+    <div id="firstStage" class="flex-column">
+      <div id="pokedexes" class="flex-column">
+        <div id="select" class="flex-row">
+          <select name="selectPokemon" id="selectPokemon">
+            <option value="">Choose Pokemon</option>
+          </select>
+          <button id="choose">Display</button>
         </div>
-        <div id="status">Choose a pokemon by the drop-down list above</div>
+        <div id="pokedex" class="flex-column">
+          <div id="pokedexHeader">
+            <img
+              class="headerLeft"
+              src="./img/headerLeft.png"
+              alt="pokedexHeader"
+            />
+            <img
+              class="headerRight"
+              src="./img/headerRight.png"
+              alt="pokedexHeader"
+            />
+            <div class="headerLeft"></div>
+          </div>
+          <div id="screen" class="flex-column">
+            <div class="flex-row">
+              <img id="pokemonImg" src="" alt="" />
+              <div id="description"></div>
+            </div>
+            <div id="status">Choose a pokemon by the drop-down list above</div>
+          </div>
+          <div class="buttons flex-row">
+            <button id="addToBattleList">
+              <a href="#battleListDiv"> CHOOSE </a>
+            </button>
+            <img src="./img/cross.png" alt="crossImg" />
+          </div>
+        </div>
       </div>
-      <div class="buttons flex-row">
-        <button id="addToBattleList">
-          <a href="#battleListDiv"> CHOOSE </a>
+      <div id="bench" class="flex-column">
+        <div id="battleListDiv" class="flex-row"></div>
+        <div id="compare" class="flex-column">
+          <button id="compareBtn" class="displayNone">Compare Pokemon</button>
+          <div id="compareStatus"></div>
+        </div>
+        <button id="startBattleBtn" class="displayNone">
+          <a href="#battle"> Let's Battle! </a>
         </button>
-        <img src="./img/cross.png" alt="crossImg" />
       </div>
     </div>
-    <div id="battleListDiv" class="flex-row"></div>
-    <div id="compare" class="flex-column">
-      <button id="compareBtn" class="displayNone">Compare Pokemon</button>
-      <div id="compareStatus"></div>
-    </div>
-    <button id="startBattleBtn" class="displayNone">
-      <a href="#battle"> Let's Battle! </a>
-    </button>
     <div id="battle" class="flex-column displayNone">
       <div id="battleField" class="flex-column"></div>
       <div id="commentField" class="flex-column">
