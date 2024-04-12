@@ -211,6 +211,9 @@ h1 {
   position: relative;
   top: -5vh;
 }
+#battle #battleField .playerDiv:nth-child(2) .playerStatus {
+  padding-bottom: 1.5vh;
+}
 #battle #commentField {
   margin-top: 20px;
   width: 80%;
@@ -240,6 +243,6 @@ h1 {
   }
 }
 
-.opacity50 {
-  opacity: 50%;
+.lost {
+  opacity: 40%;
 }/*# sourceMappingURL=style.css.map */

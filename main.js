@@ -104,20 +104,46 @@ class Pokemon {
     newOpponentImg.src = opponent.img;
     let playerDiv = document.querySelector(`#${opponent.name}PlayerDiv`);
 
+    // DOM comment
     if (opponent.hp <= 0) {
-      //勝負あり
       opponent.hp = 0;
-      newOpponentImg.classList = "playerImg opacity50";
+    }
+    comment.innerText = `
+        ${this.name} used ${this.move}! \n
+        ${opponent.name} got ${Math.floor(damage)} damage!\n
+        ${opponent.name} remaining HP: ${Math.floor(opponent.hp)}
+    `;
+
+    //勝負あり
+    if (opponent.hp <= 0) {
+      newOpponentImg.classList = "playerImg lost";
+
+      let result = document.createElement("p");
+      result.style.color = "red";
+      result.innerText = `
+        ${opponent.name} fainted!\n
+        ${this.name} wins!`;
+      comment.append(result);
+
+      //断末魔
+      let cry = new Audio(opponent.cry);
+      cry.play();
+
+      //Replay
+      attackBtns.innerHTML = "";
+      let replay = document.createElement("button");
+      replay.innerText = "Replay";
+      replay.addEventListener("click", () => {
+        window.location.reload();
+      });
+      attackBtns.append(replay);
+    } else {
+      //attack sound
+      let attackSound = new Audio(`./sound/attack.mp3`);
+      attackSound.play();
     }
 
     playerDiv.append(newOpponentImg);
-
-    // DOM comment
-    comment.innerText = `
-    ${this.name} used ${this.move}! \n
-    ${opponent.name} got ${Math.floor(damage)} damage!\n
-    ${opponent.name} remaining HP: ${Math.floor(opponent.hp)}
-    `;
 
     return opponent.hp;
   }
@@ -133,7 +159,7 @@ let getData = async (indexNum) => {
 };
 
 // Pokedex Header
-window.addEventListener("resize", () => {
+let pokedexHeader = () => {
   const headerLeft = document.querySelector(".headerLeft");
   const headerRight = document.querySelector(".headerRight");
   const pokedexHeader = document.querySelector("#pokedexHeader");
@@ -145,7 +171,7 @@ window.addEventListener("resize", () => {
 
     headerRight.style.width = `${headerRightWidth}px`;
   }
-});
+};
 
 // Render status
 let renderStat = (status, value) => {
@@ -189,6 +215,10 @@ let renderPlayer = (pokemon) => {
 };
 
 ///////////////// CTA /////////////////
+
+// Resize pokedex header
+window.addEventListener("load", pokedexHeader());
+window.addEventListener("resize", pokedexHeader());
 
 //Render pokemon drop list by refresh
 getPolkemonList();
@@ -350,7 +380,7 @@ compareBtn.addEventListener("click", () => {
     ${battleList[1].name} wins in the most status`;
   } else {
     summaryText.innerText = `
-    ${battleList[0].name} and ${battleList[1].name} are mostly even in status. \n Let's see which on wins.`;
+    ${battleList[0].name} and ${battleList[1].name} are mostly even in status. \n Let's see which wins.`;
   }
   compareStatus.append(summaryText);
 });
@@ -397,55 +427,12 @@ startBattleBtn.addEventListener("click", () => {
 
   attackA.addEventListener("click", () => {
     pokemonA.giveAttack(pokemonB);
-
-    if (pokemonB.hp <= 0) {
-      let result = document.createElement("p");
-      result.style.color = "red";
-      result.innerText = `
-        ${pokemonB.name} fainted!\n
-        ${pokemonA.name} wins!`;
-      comment.append(result);
-
-      //断末魔
-      let cry = new Audio(pokemonB.cry);
-      cry.play();
-
-      //Replay
-      attackBtns.innerHTML = "";
-      let replay = document.createElement("button");
-      replay.innerText = "Replay";
-      replay.addEventListener("click", () => {
-        window.location.reload();
-      });
-      attackBtns.append(replay);
-    }
     attackA.disabled = true;
     attackB.disabled = false;
   });
 
   attackB.addEventListener("click", () => {
     pokemonB.giveAttack(pokemonA);
-    if (pokemonA.hp <= 0) {
-      let result = document.createElement("p");
-      result.style.color = "red";
-      result.innerText = `
-        ${pokemonA.name} fainted!\n
-        ${pokemonB.name} wins!`;
-      comment.append(result);
-
-      //断末魔
-      let cry = new Audio(pokemonA.cry);
-      cry.play();
-
-      //Replay
-      attackBtns.innerHTML = "";
-      let replay = document.createElement("button");
-      replay.innerText = "Replay";
-      replay.addEventListener("click", () => {
-        window.location.reload();
-      });
-      attackBtns.append(replay);
-    }
     attackB.disabled = true;
     attackA.disabled = false;
   });

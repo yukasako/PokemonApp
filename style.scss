@@ -219,6 +219,9 @@ h1{
             align-items: flex-end;
             position: relative;
             top: -5vh;
+            .playerStatus{
+                padding-bottom: 1.5vh;
+            }
         }
     }
     #commentField{
@@ -247,6 +250,6 @@ h1{
     }
 }
 
-.opacity50{
-    opacity: 50%
+.lost{
+    opacity: 40%
 }
