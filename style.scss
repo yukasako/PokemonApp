@@ -9,6 +9,7 @@
     --color-3: #f4625d;
     --color-4: #2c2c2f;
     --color-5: #5B5B5B;
+    --color-6: #000000;
     --color-modal: hsla(0, 0%, 0%, 0.8);
     --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
     --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
@@ -26,8 +27,6 @@ body {
     background: var(--color-1);
     text-align: center;
     gap: 2vh;
-    margin-top: 2vh;
-    margin-bottom: 10vh;
 }
   
 .flex {
@@ -66,6 +65,7 @@ h1{
 }
 
 #select{
+    margin-top: 5vh;
     #selectPokemon{
         height: 3vh;
     }
@@ -195,9 +195,19 @@ h1{
     }
 }
 
+#startBattleBtn{
+    margin-bottom: 5vh;
+    a{
+        color: var(--color-6);
+        text-decoration: none;
+        font-size: larger;
+        font-weight: bold;        
+    }
+}
+
 #battle{
     width: 100%;
-    margin-top: 5vh;
+    height: 100vh;
     #battleField{
         width: 100%;
         .playerDiv{
@@ -205,7 +215,7 @@ h1{
             align-items: flex-start;
             justify-content: space-between;
             .playerStatus{
-                width: 40%;
+                width: 50%;
                 progress{
                     width: 100%;
                 };
@@ -220,7 +230,7 @@ h1{
             position: relative;
             top: -5vh;
             .playerStatus{
-                padding-bottom: 1.5vh;
+                margin-bottom: 1.5vh;
             }
         }
     }
@@ -253,3 +263,34 @@ h1{
 .lost{
     opacity: 40%
 }
+
+.slideinLeft {
+    animation: slideinLeft 2s;
+    @keyframes slideinLeft {
+        0% {
+          transform: translateX(-100vw);
+        }
+        100% {
+          transform: translateX(0);
+        }
+    }
+}
+
+.slideinRight {
+    animation: slideinRight 2s;
+    @keyframes slideinRight {
+        0% {
+          transform: translateX(100vw);
+        }
+        100% {
+          transform: translateX(0);
+        }
+    }
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+
+  }
+  
+  

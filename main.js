@@ -1,4 +1,4 @@
-///////////////// Global Variables /////////////////
+///////////////// Global Variables //////////////////////////////////
 let selectDiv = document.querySelector("#select");
 let selectPokemon = document.querySelector("#selectPokemon");
 let chooseBtn = document.querySelector("#choose");
@@ -21,11 +21,11 @@ let battleDiv = document.querySelector("#battle");
 let startBattleBtn = document.querySelector("#startBattleBtn");
 let battleField = document.querySelector("#battleField");
 let comment = document.querySelector("#comment");
+let attackBtns = document.querySelector("#attackBtns");
 let attackA = document.querySelector("#attackA");
 let attackB = document.querySelector("#attackB");
-let attackBtns = document.querySelector("#attackBtns");
 
-///////////////// Class /////////////////
+///////////////// Class //////////////////////////////////
 class Pokemon {
   constructor(
     name,
@@ -88,7 +88,6 @@ class Pokemon {
     if (damage < 10) {
       damage = 10;
     }
-    console.log(`Damage`, damage);
     opponent.hp -= damage;
 
     // DOM opponent
@@ -149,7 +148,7 @@ class Pokemon {
   }
 }
 
-///////////////// Functions /////////////////
+///////////////// Functions //////////////////////////////////
 
 // Fetch API
 let getData = async (indexNum) => {
@@ -188,7 +187,7 @@ let renderStat = (status, value) => {
 };
 
 //Render pokemon drop
-let getPolkemonList = async () => {
+let getPokemonList = async () => {
   let pokemonList = await getData(`?limit=151`);
   pokemonList.results.forEach((pokemon) => {
     let index = 1;
@@ -200,10 +199,10 @@ let getPolkemonList = async () => {
 };
 
 //Render to Battle field
-let renderPlayer = (pokemon) => {
+let renderPlayer = (pokemon, slide) => {
   let playerDiv = document.createElement("div");
   playerDiv.id = `${pokemon.name}PlayerDiv`;
-  playerDiv.classList = "playerDiv flex-row";
+  playerDiv.classList = `playerDiv flex-row ${slide}`;
   playerDiv.innerHTML = `
     <div class="playerStatus">
         <p>${pokemon.name}</p>
@@ -214,14 +213,13 @@ let renderPlayer = (pokemon) => {
   battleField.append(playerDiv);
 };
 
-///////////////// CTA /////////////////
+///////////////// CTA //////////////////////////////////
 
 // Resize pokedex header
 window.addEventListener("load", pokedexHeader());
 window.addEventListener("resize", pokedexHeader());
-
 //Render pokemon drop list by refresh
-getPolkemonList();
+getPokemonList();
 
 // CTA: Choose pokemon to pokedex
 let pokemon;
@@ -356,7 +354,7 @@ chooseBtn.addEventListener("click", async () => {
   }
 });
 
-// Compare Pokemon
+// CTA: Compare Pokemon
 compareBtn.addEventListener("click", () => {
   pokemonAwin = 0;
   pokemonBwin = 0;
@@ -385,30 +383,32 @@ compareBtn.addEventListener("click", () => {
   compareStatus.append(summaryText);
 });
 
-// Open Battle Field
+// CTA: Open Battle Field
 startBattleBtn.addEventListener("click", () => {
-  //DisplayNone
+  // DisplayNone
   selectDiv.classList = "displayNone";
   pokedex.classList = "displayNone";
   battleListDiv.classList = "displayNone";
   compareDiv.classList = "displayNone";
   startBattleBtn.classList = "displayNone";
 
-  //Open battleField
+  // Open battleField
   battleDiv.classList = "flex-column display";
 
-  // Render Battle Field
-  battleList.forEach((pokemon) => {
-    renderPlayer(pokemon);
-  });
-
+  // Get players from array
   let pokemonA = battleList[1];
   let pokemonB = battleList[0];
-  //Put name on Btn
+
+  // Render players
+  renderPlayer(pokemonA, "slideinRight");
+  renderPlayer(pokemonB, "slideinLeft");
+
+  // Attack Btns
+  // Put name on Btns
   attackA.innerText = `${pokemonA.name}'s Attack!`;
   attackB.innerText = `${pokemonB.name}'s Attack!`;
 
-  // 早い方のボタンをオープン
+  // Open Btn for faster Pokemon
   if (pokemonA.speed > pokemonB.speed) {
     attackA.disabled = false;
     attackB.disabled = true;
@@ -425,12 +425,12 @@ startBattleBtn.addEventListener("click", () => {
     `;
   }
 
+  // CTA: Attack
   attackA.addEventListener("click", () => {
     pokemonA.giveAttack(pokemonB);
     attackA.disabled = true;
     attackB.disabled = false;
   });
-
   attackB.addEventListener("click", () => {
     pokemonB.giveAttack(pokemonA);
     attackB.disabled = true;
