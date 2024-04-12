@@ -18,6 +18,7 @@
   margin: 0;
   padding: 0;
   font-family: Play;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -133,7 +134,10 @@ h1 {
   border-radius: 20px;
   font-size: large;
   font-weight: bold;
+}
+#pokedex .buttons #addToBattleList a {
   color: var(--color-1);
+  text-decoration: none;
 }
 #pokedex .buttons img {
   height: 10vh;
@@ -151,7 +155,9 @@ h1 {
 }
 #battleListDiv div {
   width: 40%;
+  margin-top: 5vh;
   font-weight: bold;
+  font-size: larger;
 }
 #battleListDiv div img {
   width: 100%;
@@ -180,6 +186,7 @@ h1 {
 
 #battle {
   width: 100%;
+  margin-top: 5vh;
 }
 #battle #battleField {
   width: 100%;
@@ -201,6 +208,8 @@ h1 {
 #battle #battleField .playerDiv:nth-child(2) {
   flex-direction: row-reverse;
   align-items: flex-end;
+  position: relative;
+  top: -5vh;
 }
 #battle #commentField {
   margin-top: 20px;
@@ -214,4 +223,23 @@ h1 {
   width: 80%;
   justify-content: space-around;
   margin: 30px;
+}
+
+.attacked {
+  animation: blink 0.2s step-end 3 forwards;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.opacity50 {
+  opacity: 50%;
 }/*# sourceMappingURL=style.css.map */

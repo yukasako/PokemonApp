@@ -91,13 +91,28 @@ class Pokemon {
     console.log(`Damage`, damage);
     opponent.hp -= damage;
 
-    // DOM
+    // DOM opponent
     let progress = document.querySelector(`#${opponent.name}HP`);
     progress.value = opponent.hp;
 
-    if (opponent.hp < 0) {
+    // DOM attack animation
+    let opponentImg = document.querySelector(`#${opponent.name}Img`);
+    opponentImg.remove();
+    let newOpponentImg = document.createElement("img");
+    newOpponentImg.id = `${opponent.name}Img`;
+    newOpponentImg.classList = "playerImg attacked";
+    newOpponentImg.src = opponent.img;
+    let playerDiv = document.querySelector(`#${opponent.name}PlayerDiv`);
+
+    if (opponent.hp <= 0) {
+      //勝負あり
       opponent.hp = 0;
+      newOpponentImg.classList = "playerImg opacity50";
     }
+
+    playerDiv.append(newOpponentImg);
+
+    // DOM comment
     comment.innerText = `
     ${this.name} used ${this.move}! \n
     ${opponent.name} got ${Math.floor(damage)} damage!\n
@@ -161,13 +176,15 @@ let getPolkemonList = async () => {
 //Render to Battle field
 let renderPlayer = (pokemon) => {
   let playerDiv = document.createElement("div");
+  playerDiv.id = `${pokemon.name}PlayerDiv`;
   playerDiv.classList = "playerDiv flex-row";
   playerDiv.innerHTML = `
     <div class="playerStatus">
         <p>${pokemon.name}</p>
         <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="${pokemon.hp}"></progress>
     </div>
-    <img class="playerImg" id="${pokemon.name}Img" src="${pokemon.img}" alt="playerImage">`;
+    <img id="${pokemon.name}Img"  class="playerImg" src="${pokemon.img}" alt="playerImage">
+    `;
   battleField.append(playerDiv);
 };
 
@@ -288,7 +305,7 @@ chooseBtn.addEventListener("click", async () => {
           cry.play();
         } else {
           alert(
-            "You already chose 2 pokemons. Back a pokemon to the ball if you want to add another"
+            "You already chose 2 pokemons. Back a pokemon to the ball if you want to add anothe."
           );
           description.innerText =
             "Choose a pokemon by the drop-down list above";
@@ -366,20 +383,21 @@ startBattleBtn.addEventListener("click", () => {
     attackA.disabled = false;
     attackB.disabled = true;
     comment.innerText = `
-    Lets Battle! \n 
+    Let's Battle! \n 
     ${pokemonA.name} is faster than ${pokemonB.name}.
     `;
   } else {
     attackA.disabled = true;
     attackB.disabled = false;
     comment.innerText = `
-    Lets Battle! \n 
+    Let's Battle! \n 
     ${pokemonB.name} is faster than ${pokemonA.name}.
     `;
   }
 
   attackA.addEventListener("click", () => {
     pokemonA.giveAttack(pokemonB);
+
     if (pokemonB.hp <= 0) {
       let result = document.createElement("p");
       result.style.color = "red";
@@ -391,10 +409,6 @@ startBattleBtn.addEventListener("click", () => {
       //断末魔
       let cry = new Audio(pokemonB.cry);
       cry.play();
-
-      //消える
-      let pokemonImg = document.querySelector(`#${pokemonB.name}Img`);
-      pokemonImg.style.opacity = "50%";
 
       //Replay
       attackBtns.innerHTML = "";
@@ -422,10 +436,6 @@ startBattleBtn.addEventListener("click", () => {
       //断末魔
       let cry = new Audio(pokemonA.cry);
       cry.play();
-
-      //消える
-      let pokemonImg = document.querySelector(`#${pokemonA.name}Img`);
-      pokemonImg.style.opacity = "50%";
 
       //Replay
       attackBtns.innerHTML = "";
