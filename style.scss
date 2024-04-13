@@ -253,7 +253,6 @@ h1{
         }
     }
     #commentField{
-        // margin-top: 20px;
         width: 80%;
         aspect-ratio: 3 / 1;
         justify-content: space-around;
@@ -327,9 +326,9 @@ h1{
     }
 
     #battle{
-        gap: 50px;
+        margin-top: 8vh;
         #battleField{
-            margin-bottom: -10vh;
+            margin-bottom: -3vh;
             .playerDiv{
                 background-color: transparent;
                 .playerStatus{

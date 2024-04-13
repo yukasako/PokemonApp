@@ -313,10 +313,10 @@ h1 {
     width: 50vw;
   }
   #battle {
-    gap: 50px;
+    margin-top: 8vh;
   }
   #battle #battleField {
-    margin-bottom: -10vh;
+    margin-bottom: -3vh;
   }
   #battle #battleField .playerDiv {
     background-color: transparent;

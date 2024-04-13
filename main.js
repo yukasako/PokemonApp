@@ -1,4 +1,5 @@
 ///////////////// Global Variables //////////////////////////////////
+let firstStage = document.querySelector("#firstStage");
 let selectDiv = document.querySelector("#select");
 let selectPokemon = document.querySelector("#selectPokemon");
 let chooseBtn = document.querySelector("#choose");
@@ -294,7 +295,7 @@ chooseBtn.addEventListener("click", async () => {
       //前に使用したポケモンをはじく
       if (pokemon != null) {
         // DOM Reset (screen)
-        description.innerHTML = `${pokemon.name}, I CHOOSE YOU!`;
+        description.innerText = `${pokemon.name},\n I CHOOSE YOU!`;
         pokemonImg.classList = "displayNone";
         statusDiv.innerHTML = "";
 
@@ -395,14 +396,8 @@ compareBtn.addEventListener("click", () => {
 
 // CTA: Open Battle Field
 startBattleBtn.addEventListener("click", () => {
-  // DisplayNone
-  selectDiv.classList = "displayNone";
-  pokedex.classList = "displayNone";
-  battleListDiv.classList = "displayNone";
-  compareDiv.classList = "displayNone";
-  startBattleBtn.classList = "displayNone";
-
-  // Open battleField
+  // Close first stage and open battleField
+  firstStage.classList = "displayNone";
   battleDiv.classList = "flex-column display";
 
   // Get players from array
