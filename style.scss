@@ -10,6 +10,9 @@
     --color-4: #2c2c2f;
     --color-5: #5B5B5B;
     --color-6: #000000;
+    --color-7: #74a7ff;
+    --color-8: #338BB0;
+    --color-9: #FFC225;
     --color-modal: hsla(0, 0%, 0%, 0.8);
     --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
     --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
@@ -26,7 +29,6 @@
 body {
     background: var(--color-1);
     text-align: center;
-    gap: 2vh;
 }
   
 .flex {
@@ -216,6 +218,7 @@ h1{
 #battle{
     width: 100%;
     height: 100vh;
+    top: 0;
     #battleField{
         width: 100%;
         .playerDiv{
@@ -224,8 +227,14 @@ h1{
             justify-content: space-between;
             .playerStatus{
                 width: 50%;
+                gap: 5px;
                 progress{
                     width: 100%;
+                    height: 15px;
+                    border: solid 1px var(--color-2);
+                    -webkit-appearance: none; /* プログレスバーのスタイルをリセット */
+                    -moz-appearance: none; /* プログレスバーのスタイルをリセット */
+                    background-color: var(--color-2); /* プログレスバーの背景色/-moz- 用 */
                 };
             }
             .playerImg{
@@ -243,7 +252,7 @@ h1{
         }
     }
     #commentField{
-        margin-top: 20px;
+        // margin-top: 20px;
         width: 80%;
         aspect-ratio: 3 / 1;
         justify-content: space-around;
@@ -300,7 +309,6 @@ h1{
 @media screen and (min-width: 768px) {
     #firstStage{
         flex-direction: row;
-        // justify-content: flex-start;
         align-items: start;
         #pokedexes{
             margin-left: 30px;
@@ -318,13 +326,15 @@ h1{
     }
 
     #battle{
+        gap: 50px;
         #battleField{
             margin-bottom: -10vh;
             .playerDiv{
                 background-color: transparent;
                 .playerStatus{
                     progress{
-                    };
+                        height: 32px;
+                    }
                 }
                 .playerImg{
                     max-width: 300px;
@@ -349,3 +359,33 @@ h1{
         }
     }
 }
+
+/*- moz- 用 */
+progress.red::-moz-progress-bar {
+    background-color: var(--color-3);
+  }
+  
+  progress.yellow::-moz-progress-bar {
+    background-color: var(--color-9);
+  }
+  
+  progress.blue::-moz-progress-bar {
+    background-color: var(--color-7);
+  }
+  
+  /*- webkit- 用 */
+  ::-webkit-progress-bar {
+    background-color: var(--color-1);
+  }
+  
+  progress.red::-webkit-progress-value {
+    background-color: var(--color-3);
+  }
+  
+  progress.yellow::-webkit-progress-value {
+    background-color: var(--color-9);
+  }
+  
+  ::-webkit-progress-value {
+    background-color: var(--color-7);
+  }

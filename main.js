@@ -94,6 +94,14 @@ class Pokemon {
     let progress = document.querySelector(`#${opponent.name}HP`);
     progress.value = opponent.hp;
 
+    // Progress bar color
+    let opponentMaxHP = document.querySelector(`#${opponent.name}HP`).max;
+    if (opponent.hp / opponentMaxHP < 0.25) {
+      progress.classList = "red";
+    } else if (opponent.hp / opponentMaxHP < 0.5) {
+      progress.classList = "yellow";
+    }
+
     // DOM attack animation
     let opponentImg = document.querySelector(`#${opponent.name}Img`);
     opponentImg.remove();
@@ -204,7 +212,7 @@ let renderPlayer = (pokemon, slide) => {
   playerDiv.id = `${pokemon.name}PlayerDiv`;
   playerDiv.classList = `playerDiv flex-row ${slide}`;
   playerDiv.innerHTML = `
-    <div class="playerStatus">
+    <div class="playerStatus flex-column">
         <p>${pokemon.name}</p>
         <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="${pokemon.hp}"></progress>
     </div>
