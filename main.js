@@ -100,6 +100,8 @@ class Pokemon {
       progress.classList = "red";
     } else if (opponent.hp / opponentMaxHP < 0.5) {
       progress.classList = "yellow";
+    } else {
+      progress.classList = "blue";
     }
 
     // DOM attack animation
@@ -214,7 +216,7 @@ let renderPlayer = (pokemon, slide) => {
   playerDiv.innerHTML = `
     <div class="playerStatus flex-column">
         <p>${pokemon.name}</p>
-        <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="${pokemon.hp}"></progress>
+        <progress id="${pokemon.name}HP" value="${pokemon.hp}" max="${pokemon.hp}" class="start"></progress>
     </div>
     <img id="${pokemon.name}Img"  class="playerImg" src="${pokemon.img}" alt="playerImage">
     `;
