@@ -30,7 +30,7 @@ let attackB = document.querySelector("#attackB");
 class Pokemon {
   constructor(
     name,
-    // type,
+    type,
     img,
     weight,
     height,
@@ -44,7 +44,7 @@ class Pokemon {
     cry
   ) {
     this.name = name;
-    // this.type = type;
+    this.type = type;
     this.img = img;
     this.weight = weight;
     this.height = height;
@@ -240,7 +240,7 @@ chooseBtn.addEventListener("click", async () => {
     console.log(data);
 
     let name = data.forms[0].name.toUpperCase();
-    //   let type = data;
+    let type = data.types;
     let img = data.sprites.other["official-artwork"].front_default;
     let weight = data.weight;
     let height = data.height;
@@ -256,7 +256,7 @@ chooseBtn.addEventListener("click", async () => {
     //Create instanse
     let NewPokemon = new Pokemon(
       name,
-      // type,
+      type,
       img,
       weight,
       height,
@@ -272,11 +272,18 @@ chooseBtn.addEventListener("click", async () => {
 
     pokemon = NewPokemon;
 
-    //DOM
+    // Check second type
+    let secondtype = "";
+    if (pokemon.type.length >= 2) {
+      secondtype = `, ${pokemon.type[1].type.name}`;
+    }
+
+    // DOM
     pokemonImg.classList = "display";
     pokemonImg.src = pokemon.img;
     description.innerHTML = `
       <p>Name: ${pokemon.name}</p>
+      <p>Type: ${pokemon.type[0].type.name}${secondtype} </p>
       <p>Weight: ${pokemon.weight}</p>
       <p>Height: ${pokemon.height}</p>
       <p>Hp: ${pokemon.hp}</p>

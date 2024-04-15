@@ -117,6 +117,7 @@ h1 {
 }
 #firstStage #pokedexes #pokedex #screen div #description {
   text-align: left;
+  width: 100%;
 }
 #firstStage #pokedexes #pokedex #screen #status {
   width: 100%;
