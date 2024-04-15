@@ -252,6 +252,19 @@ h1 {
   justify-content: space-around;
   margin: 30px;
 }
+#battle #BGM {
+  position: absolute;
+  bottom: 2px;
+}
+#battle #BGM p {
+  font-size: 10px;
+}
+#battle #BGM #stopBGM {
+  font-size: 8px;
+  font-weight: bold;
+  border: none;
+  padding: 5px;
+}
 
 .attacked {
   animation: blink 0.2s step-end 3 forwards;
@@ -273,7 +286,7 @@ h1 {
 }
 
 .slideinLeft {
-  animation: slideinLeft 2s;
+  animation: slideinLeft 2.3s;
 }
 @keyframes slideinLeft {
   0% {
@@ -285,7 +298,7 @@ h1 {
 }
 
 .slideinRight {
-  animation: slideinRight 2s;
+  animation: slideinRight 2.3s;
 }
 @keyframes slideinRight {
   0% {

@@ -267,6 +267,19 @@ h1{
             margin: 30px;
         }
     }
+    #BGM{
+        position: absolute;
+        bottom: 2px;
+        p{    
+            font-size: 10px;        
+        }
+        #stopBGM{
+            font-size: 8px;
+            font-weight: bold;
+            border: none;
+            padding: 5px;
+        }
+    }
 }
 
 .attacked {
@@ -283,7 +296,7 @@ h1{
 }
 
 .slideinLeft {
-    animation: slideinLeft 2s;
+    animation: slideinLeft 2.3s;
     @keyframes slideinLeft {
         0% {
           transform: translateX(-100vw);
@@ -295,7 +308,7 @@ h1{
 }
 
 .slideinRight {
-    animation: slideinRight 2s;
+    animation: slideinRight 2.3s;
     @keyframes slideinRight {
         0% {
           transform: translateX(100vw);

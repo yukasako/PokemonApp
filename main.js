@@ -25,6 +25,10 @@ let comment = document.querySelector("#comment");
 let attackBtns = document.querySelector("#attackBtns");
 let attackA = document.querySelector("#attackA");
 let attackB = document.querySelector("#attackB");
+let battleBGM = new Audio("./sound/battleBGM.ogg");
+let endingBGM = new Audio("./sound/endingBGM.ogg");
+let fanfare = new Audio("./sound/fanfare.ogg");
+let stopBGM = document.querySelector("#stopBGM");
 
 ///////////////// Class //////////////////////////////////
 class Pokemon {
@@ -138,13 +142,23 @@ class Pokemon {
       //断末魔
       let cry = new Audio(opponent.cry);
       cry.play();
+      //BGM 変更
+      battleBGM.pause();
+      setTimeout(() => {
+        endingBGM.volume = "0.3";
+        endingBGM.play();
+      }, 1000);
 
       //Replay
       attackBtns.innerHTML = "";
       let replay = document.createElement("button");
       replay.innerText = "Replay";
       replay.addEventListener("click", () => {
-        window.location.reload();
+        fanfare.volume = "0.3";
+        fanfare.play();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       });
       attackBtns.append(replay);
     } else {
@@ -411,6 +425,10 @@ startBattleBtn.addEventListener("click", () => {
   let pokemonA = battleList[1];
   let pokemonB = battleList[0];
 
+  // Music
+  battleBGM.volume = "0.3";
+  battleBGM.play();
+
   // Render players
   renderPlayer(pokemonA, "slideinRight");
   renderPlayer(pokemonB, "slideinLeft");
@@ -447,5 +465,11 @@ startBattleBtn.addEventListener("click", () => {
     pokemonB.giveAttack(pokemonA);
     attackB.disabled = true;
     attackA.disabled = false;
+  });
+
+  // CTA: Stop BGM
+  stopBGM.addEventListener("click", () => {
+    battleBGM.pause();
+    endingBGM.pause();
   });
 });
