@@ -327,7 +327,7 @@ chooseBtn.addEventListener("click", async () => {
         p.innerText = pokemon.name;
         let chosenPokemonImg = document.createElement("img");
         chosenPokemonImg.src = pokemon.img;
-        //Delete
+        //Delete Btn
         let deteteBtn = document.createElement("button");
         deteteBtn.innerText = "Back to Ball";
         deteteBtn.addEventListener("click", () => {
@@ -341,9 +341,10 @@ chooseBtn.addEventListener("click", async () => {
         });
         chosenPokemon.append(p, deteteBtn, chosenPokemonImg);
 
+        // ベンチにスペースがある場合
         if (battleListDiv.childElementCount < 2) {
           if (battleList.length > 0) {
-            //BattleListの中に選択済みポケモンがいるか確認
+            // BattleListの中に選択済みポケモンがいるか確認
             battleList.forEach((p) => {
               if (p.name !== pokemon.name) {
                 battleListDiv.append(chosenPokemon);
@@ -355,7 +356,7 @@ chooseBtn.addEventListener("click", async () => {
               }
             });
           } else {
-            //DOM
+            // DOM
             battleListDiv.append(chosenPokemon);
             battleList.push(pokemon);
             console.log(battleList);
