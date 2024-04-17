@@ -261,7 +261,7 @@ h1 {
 #battle #BGM p {
   font-size: 10px;
 }
-#battle #BGM #stopBGM {
+#battle #BGM #BGMBtn {
   font-size: 8px;
   font-weight: bold;
   border: none;

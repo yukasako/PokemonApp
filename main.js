@@ -28,7 +28,8 @@ let attackB = document.querySelector("#attackB");
 let battleBGM = new Audio("./sound/battleBGM.ogg");
 let endingBGM = new Audio("./sound/endingBGM.ogg");
 let fanfare = new Audio("./sound/fanfare.ogg");
-let stopBGM = document.querySelector("#stopBGM");
+let BGMBtn = document.querySelector("#BGMBtn");
+let isBGMPaused = false;
 
 ///////////////// Class //////////////////////////////////
 class Pokemon {
@@ -146,10 +147,12 @@ class Pokemon {
       cry.play();
       //BGM 変更
       battleBGM.pause();
-      setTimeout(() => {
-        endingBGM.volume = "0.3";
-        endingBGM.play();
-      }, 1000);
+      if (isBGMPaused === false) {
+        setTimeout(() => {
+          endingBGM.volume = "0.3";
+          endingBGM.play();
+        }, 1000);
+      }
 
       //Replay
       attackBtns.innerHTML = "";
@@ -479,9 +482,23 @@ startBattleBtn.addEventListener("click", () => {
     });
 
     // CTA: Stop BGM
-    stopBGM.addEventListener("click", () => {
-      battleBGM.pause();
-      endingBGM.pause();
+    BGMBtn.addEventListener("click", () => {
+      if (!isBGMPaused) {
+        // BGMが再生中の場合は停止
+        battleBGM.pause();
+        endingBGM.pause();
+        BGMBtn.innerText = "Play BGM";
+        isBGMPaused = true; // 再生状態を更新
+      } else {
+        // BGMが停止中の場合は再生
+        if (comment.childElementCount > 6) {
+          endingBGM.play();
+        } else {
+          battleBGM.play();
+        }
+        BGMBtn.innerText = "Stop BGM";
+        isBGMPaused = false; // 再生状態を更新
+      }
     });
   } else {
     alert("Choose 2 pokemons for battle.");
