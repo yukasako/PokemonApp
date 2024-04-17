@@ -211,7 +211,7 @@ let renderStat = (status, value) => {
   let progress = document.createElement("progress");
   progress.id = `${status}Progress`;
   progress.value = value;
-  progress.max = 100;
+  progress.max = 150; //255
   aStatus.append(label, progress);
   statusDiv.append(aStatus);
 };
@@ -341,6 +341,7 @@ chooseBtn.addEventListener("click", async () => {
           battleList = battleList.filter(
             (pokemon) => pokemon.img !== chosenPokemonImg.src
           );
+          compareStatus.innerText = "";
           console.log(battleList); // 確認用
         });
         chosenPokemon.append(p, deteteBtn, chosenPokemonImg);
