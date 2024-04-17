@@ -70,15 +70,17 @@ class Pokemon {
     if (pokemonA[status] > pokemonB[status]) {
       higherPokemon.innerText = pokemonA.name;
       higherPokemon.style.color = "red";
-      result = ` wins in ${status}`;
+      let gap = pokemonA[status] - pokemonB[status];
+      result = ` has ${gap} advantage in ${status}.`;
       pokemonAwin++;
     } else if (pokemonA[status] < pokemonB[status]) {
       higherPokemon.innerText = pokemonB.name;
       higherPokemon.style.color = "blue";
-      result = ` wins in ${status}`;
+      let gap = pokemonB[status] - pokemonA[status];
+      result = ` has ${gap} advantage in ${status}.`;
       pokemonBwin++;
     } else {
-      result = `Even in ${status}`;
+      result = `Even in ${status}.`;
     }
 
     resultText.append(higherPokemon, result);
@@ -184,14 +186,14 @@ let getData = async (indexNum) => {
 
 // Pokedex Header
 let pokedexHeader = () => {
-  const headerLeft = document.querySelector(".headerLeft");
-  const headerRight = document.querySelector(".headerRight");
-  const pokedexHeader = document.querySelector("#pokedexHeader");
+  let headerLeft = document.querySelector(".headerLeft");
+  let headerRight = document.querySelector(".headerRight");
+  let pokedexHeader = document.querySelector("#pokedexHeader");
 
   if (headerLeft && headerRight && pokedexHeader) {
-    const headerLeftWidth = headerLeft.offsetWidth;
-    const pokedexHeaderWidth = pokedexHeader.offsetWidth;
-    const headerRightWidth = pokedexHeaderWidth - headerLeftWidth;
+    let headerLeftWidth = headerLeft.offsetWidth;
+    let pokedexHeaderWidth = pokedexHeader.offsetWidth;
+    let headerRightWidth = pokedexHeaderWidth - headerLeftWidth;
 
     headerRight.style.width = `${headerRightWidth}px`;
   }
@@ -351,7 +353,7 @@ chooseBtn.addEventListener("click", async () => {
                 console.log(battleList);
                 return battleList;
               } else {
-                alert("The Pokemon has already been chosen");
+                alert("The Pokemon has already been chosen.");
               }
             });
           } else {
@@ -368,7 +370,7 @@ chooseBtn.addEventListener("click", async () => {
             "You already chose 2 pokemons. Back a pokemon to the ball if you want to add anothe."
           );
           description.innerText =
-            "Choose a pokemon by the drop-down list above";
+            "Choose a pokemon by the drop-down list above.";
         }
       }
       if (battleList.length >= 2) {
@@ -382,7 +384,7 @@ chooseBtn.addEventListener("click", async () => {
       pokemon = null;
     });
   } else {
-    alert("Choose a pokemon by the dropdown-List");
+    alert("Choose a pokemon by the dropdown-List.");
   }
 });
 
@@ -404,10 +406,10 @@ compareBtn.addEventListener("click", () => {
   let summaryText = document.createElement("p");
   if (pokemonAwin > pokemonBwin) {
     summaryText.innerText = `
-    ${battleList[0].name} wins in the most status`;
+    ${battleList[0].name} wins in the most status.`;
   } else if (pokemonAwin < pokemonBwin) {
     summaryText.innerText = `
-    ${battleList[1].name} wins in the most status`;
+    ${battleList[1].name} wins in the most status.`;
   } else {
     summaryText.innerText = `
     ${battleList[0].name} and ${battleList[1].name} are mostly even in status. \n Let's see which wins.`;

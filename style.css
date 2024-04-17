@@ -112,12 +112,14 @@ h1 {
   padding: 20px;
   gap: 10px;
 }
+#firstStage #pokedexes #pokedex #screen div {
+  justify-content: space-around;
+}
 #firstStage #pokedexes #pokedex #screen div #pokemonImg {
   width: 50%;
 }
 #firstStage #pokedexes #pokedex #screen div #description {
   text-align: left;
-  width: 100%;
 }
 #firstStage #pokedexes #pokedex #screen #status {
   width: 100%;

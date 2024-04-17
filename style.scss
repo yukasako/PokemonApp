@@ -112,12 +112,12 @@ h1{
                 padding: 20px;
                 gap: 10px;
                 div{
+                    justify-content: space-around;
                     #pokemonImg{
                         width: 50%;
                     }
                     #description{
                         text-align: left;
-                        width: 100%;
                     }
                 }
                 #status{
