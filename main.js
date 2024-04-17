@@ -243,6 +243,7 @@ let renderPlayer = (pokemon, slide) => {
 // Resize pokedex header
 window.addEventListener("load", pokedexHeader());
 window.addEventListener("resize", pokedexHeader());
+window.addEventListener("DOMContentLoaded", pokedexHeader);
 //Render pokemon drop list by refresh
 getPokemonList();
 
