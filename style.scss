@@ -125,8 +125,10 @@ h1{
                     div{
                         width: 100%;
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: space-around;
                         label{
+                            min-width: 80px;
+                            text-align: left;
                         }
                         progress{
                             width: 60%;

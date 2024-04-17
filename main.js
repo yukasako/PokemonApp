@@ -25,8 +25,8 @@ let comment = document.querySelector("#comment");
 let attackBtns = document.querySelector("#attackBtns");
 let attackA = document.querySelector("#attackA");
 let attackB = document.querySelector("#attackB");
-let battleBGM = new Audio("./sound/battleBGM.ogg");
-let endingBGM = new Audio("./sound/endingBGM.ogg");
+let battleBGM = new Audio("./sound/battleBGM.mp3");
+let endingBGM = new Audio("./sound/endingBGM.mp3");
 let fanfare = new Audio("./sound/fanfare.ogg");
 let stopBGM = document.querySelector("#stopBGM");
 
@@ -50,8 +50,8 @@ class Pokemon {
     this.name = name;
     this.type = type;
     this.img = img;
-    this.weight = weight;
-    this.height = height;
+    this.weight = weight / 10;
+    this.height = height * 10;
     this.hp = hp;
     this.attack = attack;
     this.defence = defence;
@@ -299,10 +299,8 @@ chooseBtn.addEventListener("click", async () => {
     description.innerHTML = `
       <p>Name: ${pokemon.name}</p>
       <p>Type: ${pokemon.type[0].type.name}${secondtype} </p>
-      <p>Weight: ${pokemon.weight}</p>
-      <p>Height: ${pokemon.height}</p>
-      <p>Hp: ${pokemon.hp}</p>
-      <p>Attack: ${pokemon.attack}</p>`;
+      <p>Weight: ${pokemon.weight}kg</p>
+      <p>Height: ${pokemon.height}cm</p>`;
 
     statusDiv.innerHTML = "";
     renderStat("HP", pokemon.hp);

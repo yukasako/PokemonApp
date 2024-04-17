@@ -125,7 +125,11 @@ h1 {
 #firstStage #pokedexes #pokedex #screen #status div {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+#firstStage #pokedexes #pokedex #screen #status div label {
+  min-width: 80px;
+  text-align: left;
 }
 #firstStage #pokedexes #pokedex #screen #status div progress {
   width: 60%;
