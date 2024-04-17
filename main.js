@@ -348,23 +348,27 @@ chooseBtn.addEventListener("click", async () => {
             // BattleListの中に選択済みポケモンがいるか確認
             battleList.forEach((p) => {
               if (p.name !== pokemon.name) {
+                // 2匹目エントリー
                 battleListDiv.append(chosenPokemon);
                 battleList.push(pokemon);
                 console.log(battleList);
+                // Cry
+                let cry = new Audio(pokemon.cry);
+                cry.play();
                 return battleList;
               } else {
                 alert("The Pokemon has already been chosen.");
               }
             });
           } else {
-            // DOM
+            // 1匹目エントリー
             battleListDiv.append(chosenPokemon);
             battleList.push(pokemon);
             console.log(battleList);
+            // Cry
+            let cry = new Audio(pokemon.cry);
+            cry.play();
           }
-          // Cry
-          let cry = new Audio(pokemon.cry);
-          cry.play();
         } else {
           alert(
             "You already chose 2 pokemons. Back a pokemon to the ball if you want to add anothe."
