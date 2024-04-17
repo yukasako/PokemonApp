@@ -25,8 +25,8 @@ let comment = document.querySelector("#comment");
 let attackBtns = document.querySelector("#attackBtns");
 let attackA = document.querySelector("#attackA");
 let attackB = document.querySelector("#attackB");
-let battleBGM = new Audio("./sound/battleBGM.mp3");
-let endingBGM = new Audio("./sound/endingBGM.mp3");
+let battleBGM = new Audio("./sound/battleBGM.ogg");
+let endingBGM = new Audio("./sound/endingBGM.ogg");
 let fanfare = new Audio("./sound/fanfare.ogg");
 let stopBGM = document.querySelector("#stopBGM");
 
@@ -428,7 +428,7 @@ startBattleBtn.addEventListener("click", () => {
   let pokemonB = battleList[0];
 
   // Music
-  battleBGM.volume = "0.1";
+  battleBGM.volume = "0.3";
   battleBGM.play();
 
   // Render players
