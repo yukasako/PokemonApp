@@ -377,7 +377,7 @@ chooseBtn.addEventListener("click", async () => {
             "Choose a pokemon by the drop-down list above.";
         }
       }
-      if (battleList.length >= 2) {
+      if (battleList.length >= 1) {
         compareBtn.classList = "display";
         startBattleBtn.classList = "display";
       } else {
@@ -394,88 +394,96 @@ chooseBtn.addEventListener("click", async () => {
 
 // CTA: Compare Pokemon
 compareBtn.addEventListener("click", () => {
-  pokemonAwin = 0;
-  pokemonBwin = 0;
-  compareStatus.innerHTML = "";
-  // Pokemon.compare("height", battleList[0], battleList[1]);
-  // Pokemon.compare("weight", battleList[0], battleList[1]);
-  Pokemon.compare("hp", battleList[0], battleList[1]);
-  Pokemon.compare("attack", battleList[0], battleList[1]);
-  Pokemon.compare("defence", battleList[0], battleList[1]);
-  Pokemon.compare("s-attack", battleList[0], battleList[1]);
-  Pokemon.compare("s-defence", battleList[0], battleList[1]);
-  Pokemon.compare("speed", battleList[0], battleList[1]);
-  console.log(pokemonAwin, pokemonBwin);
+  if (battleList.length >= 2) {
+    pokemonAwin = 0;
+    pokemonBwin = 0;
+    compareStatus.innerHTML = "";
+    // Pokemon.compare("height", battleList[0], battleList[1]);
+    // Pokemon.compare("weight", battleList[0], battleList[1]);
+    Pokemon.compare("hp", battleList[0], battleList[1]);
+    Pokemon.compare("attack", battleList[0], battleList[1]);
+    Pokemon.compare("defence", battleList[0], battleList[1]);
+    Pokemon.compare("s-attack", battleList[0], battleList[1]);
+    Pokemon.compare("s-defence", battleList[0], battleList[1]);
+    Pokemon.compare("speed", battleList[0], battleList[1]);
+    console.log(pokemonAwin, pokemonBwin);
 
-  let summaryText = document.createElement("p");
-  if (pokemonAwin > pokemonBwin) {
-    summaryText.innerText = `
+    let summaryText = document.createElement("p");
+    if (pokemonAwin > pokemonBwin) {
+      summaryText.innerText = `
     ${battleList[0].name} wins in the most status.`;
-  } else if (pokemonAwin < pokemonBwin) {
-    summaryText.innerText = `
+    } else if (pokemonAwin < pokemonBwin) {
+      summaryText.innerText = `
     ${battleList[1].name} wins in the most status.`;
-  } else {
-    summaryText.innerText = `
+    } else {
+      summaryText.innerText = `
     ${battleList[0].name} and ${battleList[1].name} are mostly even in status. \n Let's see which wins.`;
+    }
+    compareStatus.append(summaryText);
+  } else {
+    alert("Choose 2 pokemons to compare.");
   }
-  compareStatus.append(summaryText);
 });
 
 // CTA: Open Battle Field
 startBattleBtn.addEventListener("click", () => {
-  // Close first stage and open battleField
-  firstStage.classList = "displayNone";
-  battleDiv.classList = "flex-column display";
+  if (battleList.length >= 2) {
+    // Close first stage and open battleField
+    firstStage.classList = "displayNone";
+    battleDiv.classList = "flex-column display";
 
-  // Get players from array
-  let pokemonA = battleList[1];
-  let pokemonB = battleList[0];
+    // Get players from array
+    let pokemonA = battleList[1];
+    let pokemonB = battleList[0];
 
-  // Music
-  battleBGM.volume = "0.3";
-  battleBGM.play();
+    // Music
+    battleBGM.volume = "0.3";
+    battleBGM.play();
 
-  // Render players
-  renderPlayer(pokemonA, "slideinRight");
-  renderPlayer(pokemonB, "slideinLeft");
+    // Render players
+    renderPlayer(pokemonA, "slideinRight");
+    renderPlayer(pokemonB, "slideinLeft");
 
-  // Attack Btns
-  // Put name on Btns
-  attackA.innerText = `${pokemonA.name}'s Attack!`;
-  attackB.innerText = `${pokemonB.name}'s Attack!`;
+    // Attack Btns
+    // Put name on Btns
+    attackA.innerText = `${pokemonA.name}'s Attack!`;
+    attackB.innerText = `${pokemonB.name}'s Attack!`;
 
-  // Open Btn for faster Pokemon
-  if (pokemonA.speed > pokemonB.speed) {
-    attackA.disabled = false;
-    attackB.disabled = true;
-    comment.innerText = `
+    // Open Btn for faster Pokemon
+    if (pokemonA.speed > pokemonB.speed) {
+      attackA.disabled = false;
+      attackB.disabled = true;
+      comment.innerText = `
     Let's Battle! \n 
     ${pokemonA.name} is faster than ${pokemonB.name}.
     `;
-  } else {
-    attackA.disabled = true;
-    attackB.disabled = false;
-    comment.innerText = `
+    } else {
+      attackA.disabled = true;
+      attackB.disabled = false;
+      comment.innerText = `
     Let's Battle! \n 
     ${pokemonB.name} is faster than ${pokemonA.name}.
     `;
+    }
+
+    // CTA: Attack
+    attackA.addEventListener("click", () => {
+      pokemonA.giveAttack(pokemonB);
+      attackA.disabled = true;
+      attackB.disabled = false;
+    });
+    attackB.addEventListener("click", () => {
+      pokemonB.giveAttack(pokemonA);
+      attackB.disabled = true;
+      attackA.disabled = false;
+    });
+
+    // CTA: Stop BGM
+    stopBGM.addEventListener("click", () => {
+      battleBGM.pause();
+      endingBGM.pause();
+    });
+  } else {
+    alert("Choose 2 pokemons for battle.");
   }
-
-  // CTA: Attack
-  attackA.addEventListener("click", () => {
-    pokemonA.giveAttack(pokemonB);
-    attackA.disabled = true;
-    attackB.disabled = false;
-  });
-  attackB.addEventListener("click", () => {
-    pokemonB.giveAttack(pokemonA);
-    attackB.disabled = true;
-    attackA.disabled = false;
-  });
-
-  // CTA: Stop BGM
-  stopBGM.addEventListener("click", () => {
-    battleBGM.pause();
-    endingBGM.pause();
-  });
 });
