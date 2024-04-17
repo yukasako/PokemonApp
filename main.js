@@ -428,7 +428,7 @@ startBattleBtn.addEventListener("click", () => {
   let pokemonB = battleList[0];
 
   // Music
-  battleBGM.volume = "0.3";
+  battleBGM.volume = "0.1";
   battleBGM.play();
 
   // Render players
