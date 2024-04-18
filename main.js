@@ -407,8 +407,8 @@ compareBtn.addEventListener("click", () => {
     Pokemon.compare("hp", battleList[0], battleList[1]);
     Pokemon.compare("attack", battleList[0], battleList[1]);
     Pokemon.compare("defence", battleList[0], battleList[1]);
-    Pokemon.compare("s-attack", battleList[0], battleList[1]);
-    Pokemon.compare("s-defence", battleList[0], battleList[1]);
+    Pokemon.compare("specialAttack", battleList[0], battleList[1]);
+    Pokemon.compare("specialDefence", battleList[0], battleList[1]);
     Pokemon.compare("speed", battleList[0], battleList[1]);
     console.log(pokemonAwin, pokemonBwin);
 
