@@ -2,7 +2,6 @@
 let firstStage = document.querySelector("#firstStage");
 let selectDiv = document.querySelector("#select");
 let selectPokemon = document.querySelector("#selectPokemon");
-let chooseBtn = document.querySelector("#choose");
 let pokedex = document.querySelector("#pokedex");
 let screen = document.querySelector("#screen");
 let pokemonImg = document.querySelector("#pokemonImg");
@@ -254,7 +253,7 @@ getPokemonList();
 
 // CTA: Choose pokemon to pokedex
 let pokemon;
-chooseBtn.addEventListener("click", async () => {
+selectPokemon.addEventListener("change", async () => {
   if (selectPokemon.value) {
     let data = await getData(selectPokemon.value);
     console.log(data);
