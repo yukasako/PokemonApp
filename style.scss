@@ -4,422 +4,430 @@
 @import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Play:wght@400;700&display=swap");
 
 :root {
-    --color-1: #ffffff;
-    --color-2: #c3c3c3;
-    --color-3: #f4625d;
-    --color-4: #2c2c2f;
-    --color-5: #5B5B5B;
-    --color-6: #000000;
-    --color-7: #74a7ff;
-    --color-8: #338BB0;
-    --color-9: #FFC225;
-    --color-modal: hsla(0, 0%, 0%, 0.8);
-    --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
-    --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
+  --color-1: #ffffff;
+  --color-2: #c3c3c3;
+  --color-3: #f4625d;
+  --color-4: #2c2c2f;
+  --color-5: #5b5b5b;
+  --color-6: #000000;
+  --color-7: #74a7ff;
+  --color-8: #338bb0;
+  --color-9: #ffc225;
+  --color-modal: hsla(0, 0%, 0%, 0.8);
+  --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
+  --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Play;
-    scroll-behavior: smooth;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Play;
+  scroll-behavior: smooth;
 }
-  
+
 body {
-    background: var(--color-1);
-    text-align: center;
+  background: var(--color-1);
+  text-align: center;
 }
-  
+
 .flex {
-    display: flex;
+  display: flex;
 }
-  
+
 .flex-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-  
+
 .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;}
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .displayNone {
-    display: none;
+  display: none;
 }
 .display {
-    display: flex;
+  display: flex;
 }
 
-button{
-    padding: 8px;
-    margin: 5px;
-    border-radius: 10px;
-    border-width: 1px;
+button {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 10px;
+  border-width: 1px;
 }
 
-h1{
-    margin: 30px;
+h1 {
+  margin: 30px;
 }
 
-#firstStage{
-    #pokedexes{
-        gap: 30px;
-        #select{
-            margin-top: 5vh;
-            #selectPokemon{
-                height: 3vh;
-            }
-        }
-        
-        #pokedex{
-            background: var(--color-3);
-            width: 80vw;
-            max-width: 500px;
-            aspect-ratio: 3 / 4;
-            justify-content: space-between;
-            border-radius: 30px;
-            box-shadow: var(--shadow-1);
-        
-            #pokedexHeader{
-                width: 100%;
-                height: 10vh;
-                background-color: var(--color-3);
-                position: relative;
-                border-radius: 30px;
-                display: flex;
-        
-                .headerLeft{
-                    flex: 0 0 auto; 
-                    height: 100%;
-                }
-                .headerRight{
-                    flex: 1 1 auto;
-                }
-            }
-            #screen{
-                width: 80%;
-                aspect-ratio: 1 / 1;
-                color: var(--color-1);
-                background: var(--color-4);
-                border: solid 15px var(--color-2);
-                border-radius: 10px;
-                margin-top: 2vh;
-                padding: 20px;
-                gap: 10px;
-                div{
-                    justify-content: space-around;
-                    #pokemonImg{
-                        width: 50%;
-                    }
-                    #description{
-                        text-align: left;
-                    }
-                }
-                #status{
-                    width: 100%;
-                    div{
-                        width: 100%;
-                        display: flex;
-                        justify-content: space-around;
-                        label{
-                            min-width: 80px;
-                            text-align: left;
-                        }
-                        progress{
-                            width: 60%;
-                        }
-                    }
-                }
-            }
-            .buttons{
-                padding: 50px;
-                width: 100%;
-                justify-content: space-between;
-                #addToBattleList{
-                    width: 50%;
-                    height: 6vh;
-                    background-color: var(--color-5);
-                    border-radius: 20px;
-                    font-size: large;
-                    font-weight: bold;
-                    a{
-                        color: var(--color-1);
-                        text-decoration: none;
-                    }
-                }
-                img{
-                    height: 10vh;
-                }
-            }
-        }
+#firstStage {
+  #pokedexes {
+    gap: 30px;
+    #select {
+      margin-top: 5vh;
+      #selectPokemon {
+        height: 3vh;
+      }
     }
-    #bench{
-        gap: 2vh;
-        #battleListDiv{
-            width: 80%;
-            justify-content: space-around;
-            background-image: url(./img/field.png);
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position: 50% 100%;
-            background-color:rgba(255,255,255,0.4);
-            background-blend-mode: lighten;
-            div {
-                width: 40%;
-                margin-top: 5vh;
-                font-weight: bold;
-                font-size: larger;
-                img{
-                    width: 100%;
-                    margin-bottom: 3vh;
-                }
-                button{
-                    padding: 5px;
-                    border: none;
-                }
-            };
-        }
-        
-        #compare{
-            width: 80%;
-            gap: 10px;
-            #compareBtn{
-            }
-            #compareStatus{
-                width: 100%;
-                div{
-                    span:first-child{
-                        width: 40%;
-                        text-align: right;
-                    }
-                    span:last-child{
-                        width: 60%;
-                        text-align: left;
-                    }
-                }
-            }
-        }
-        
-        #startBattleBtn{
-            margin-bottom: 5vh;
-            a{
-                color: var(--color-6);
-                text-decoration: none;
-                font-size: larger;
-                font-weight: bold;        
-            }
-        }
-    
-    }
-}
 
-#battle{
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    #battleField{
+    #pokedex {
+      background: var(--color-3);
+      width: 80vw;
+      max-width: 500px;
+      //   aspect-ratio: 3 / 4;
+      justify-content: space-between;
+      border-radius: 30px;
+      box-shadow: var(--shadow-1);
+
+      #pokedexHeader {
         width: 100%;
-        .playerDiv{
-            width: 80%;
-            align-items: flex-start;
-            justify-content: space-between;
-            .playerStatus{
-                width: 50%;
-                gap: 5px;
-                progress{
-                    width: 100%;
-                    height: 15px;
-                    border: solid 1px var(--color-2);
-                    border-radius: 50px;
-                    -webkit-appearance: none; /* プログレスバーのスタイルをリセット */
-                    -moz-appearance: none; /* プログレスバーのスタイルをリセット */
-                    background-color: var(--color-2); /* プログレスバーの背景色/-moz- 用 */
-                };
-            }
-            .playerImg{
-                width: 40%;
-            }
+        height: 10vh;
+        background-color: var(--color-3);
+        position: relative;
+        border-radius: 30px;
+        display: flex;
+
+        .headerLeft {
+          flex: 0 0 auto;
+          height: 100%;
         }
-        .playerDiv:nth-child(2) {
-            flex-direction: row-reverse;
-            align-items: flex-end;
-            position: relative;
-            top: -5vh;
-            .playerStatus{
-                margin-bottom: 1.5vh;
-            }
+        .headerRight {
+          flex: 1 1 auto;
         }
-    }
-    #commentField{
+      }
+      #screen {
         width: 80%;
-        aspect-ratio: 3 / 1;
-        justify-content: space-around;
-        border: 5px double var(--color-4);
-        border-radius: 5px;
-        #comment{            
+        aspect-ratio: 1 / 1;
+        color: var(--color-1);
+        background: var(--color-4);
+        border: solid 15px var(--color-2);
+        border-radius: 10px;
+        margin-top: 2vh;
+        padding: 20px;
+        gap: 10px;
+        div {
+          justify-content: space-around;
+          #pokemonImg {
+            width: 50%;
+          }
+          #description {
+            text-align: left;
+          }
         }
-        #attackBtns{
-            width: 80%;
+        #status {
+          width: 100%;
+          div {
+            width: 100%;
+            display: flex;
             justify-content: space-around;
-            margin: 30px;
+            label {
+              min-width: 80px;
+              text-align: left;
+            }
+            progress {
+              width: 60%;
+            }
+          }
         }
+      }
+      .buttons {
+        padding: 50px;
+        width: 100%;
+        justify-content: space-between;
+        #addToBattleList {
+          width: 50%;
+          height: 6vh;
+          background-color: var(--color-5);
+          border-radius: 20px;
+          font-size: large;
+          font-weight: bold;
+          a {
+            color: var(--color-1);
+            text-decoration: none;
+          }
+        }
+        img {
+          height: 10vh;
+        }
+      }
     }
-    #BGM{
-        p{    
-            font-size: 10px;        
+  }
+  #bench {
+    gap: 2vh;
+    #battleListDiv {
+      width: 80%;
+      justify-content: space-around;
+      background-image: url(./img/field.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: 50% 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      background-blend-mode: lighten;
+      div {
+        width: 40%;
+        margin-top: 5vh;
+        font-weight: bold;
+        font-size: larger;
+        img {
+          width: 100%;
+          margin-bottom: 3vh;
         }
-        #BGMBtn{
-            font-size: 8px;
-            font-weight: bold;
-            border: none;
-            padding: 5px;
+        button {
+          padding: 5px;
+          border: none;
         }
+      }
     }
+
+    #compare {
+      width: 80%;
+      gap: 10px;
+      #compareBtn {
+      }
+      #compareStatus {
+        width: 100%;
+        div {
+          span:first-child {
+            width: 40%;
+            text-align: right;
+          }
+          span:last-child {
+            width: 60%;
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    #startBattleBtn {
+      margin-bottom: 5vh;
+      a {
+        color: var(--color-6);
+        text-decoration: none;
+        font-size: larger;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+#battle {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  #battleField {
+    width: 100%;
+    .playerDiv {
+      width: 80%;
+      align-items: flex-start;
+      justify-content: space-between;
+      .playerStatus {
+        width: 50%;
+        gap: 5px;
+        progress {
+          width: 100%;
+          height: 15px;
+          border: solid 1px var(--color-2);
+          border-radius: 50px;
+          -webkit-appearance: none; /* プログレスバーのスタイルをリセット */
+          -moz-appearance: none; /* プログレスバーのスタイルをリセット */
+          background-color: var(
+            --color-2
+          ); /* プログレスバーの背景色/-moz- 用 */
+        }
+      }
+      .playerImg {
+        width: 40%;
+      }
+    }
+    .playerDiv:nth-child(2) {
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      position: relative;
+      top: -5vh;
+      .playerStatus {
+        margin-bottom: 1.5vh;
+      }
+    }
+  }
+  #commentField {
+    width: 80%;
+    aspect-ratio: 3 / 1;
+    justify-content: space-around;
+    border: 5px double var(--color-4);
+    border-radius: 5px;
+    #comment {
+    }
+    #attackBtns {
+      width: 80%;
+      justify-content: space-around;
+      margin: 30px;
+    }
+  }
+  #BGM {
+    p {
+      font-size: 10px;
+    }
+    #BGMBtn {
+      font-size: 8px;
+      font-weight: bold;
+      border: none;
+      padding: 5px;
+    }
+  }
 }
 
 .attacked {
-    animation: blink 0.2s step-end 3 forwards;
-    @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+  animation: blink 0.2s step-end 3 forwards;
+  @keyframes blink {
+    0% {
+      opacity: 1;
     }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
-.lost{
-    opacity: 40%
+.lost {
+  opacity: 40%;
 }
 
 .slideinLeft {
-    animation: slideinLeft 2.3s;
-    @keyframes slideinLeft {
-        0% {
-          transform: translateX(-100vw);
-        }
-        100% {
-          transform: translateX(0);
-        }
+  animation: slideinLeft 2.3s;
+  @keyframes slideinLeft {
+    0% {
+      transform: translateX(-100vw);
     }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 .slideinRight {
-    animation: slideinRight 2.3s;
-    @keyframes slideinRight {
-        0% {
-          transform: translateX(100vw);
-        }
-        100% {
-          transform: translateX(0);
-        }
+  animation: slideinRight 2.3s;
+  @keyframes slideinRight {
+    0% {
+      transform: translateX(100vw);
     }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-    #firstStage{
-        flex-direction: row;
-        align-items: start;
-        #pokedexes{
-            margin-left: 30px;
-            #pokedex{
-                width: 40vw;
-                max-width: 500px;
-            }
-        }
-        #bench{
-            padding-top: 20vh;
-            width: 50vw;
-            #battleListDiv{
-            }
-        }
+  #firstStage {
+    flex-direction: row;
+    align-items: start;
+    #pokedexes {
+      margin-left: 30px;
+      #pokedex {
+        width: 40vw;
+        max-width: 500px;
+      }
     }
+    #bench {
+      padding-top: 20vh;
+      width: 50vw;
+      #battleListDiv {
+      }
+    }
+  }
 
-    #battle{
-        margin-top: 8vh;
-        #battleField{
-            margin-bottom: -3vh;
-            .playerDiv{
-                background-color: transparent;
-                .playerStatus{
-                    progress{
-                        height: 32px;
-                    }
-                }
-                .playerImg{
-                    max-width: 300px;
-                    max-height: 300px;
-                }
-            }
-            .playerDiv:nth-child(2) {
-                top: -10vh;
-                .playerStatus{
-                }
-            }
+  #battle {
+    margin-top: 8vh;
+    #battleField {
+      margin-bottom: -3vh;
+      .playerDiv {
+        background-color: transparent;
+        .playerStatus {
+          progress {
+            height: 32px;
+          }
         }
-        #commentField{
-            width: 80%;
-            justify-content: flex-start;
-            aspect-ratio: auto;
-            #comment{  
-                margin: 10px;
-            }
-            #attackBtns{
-            }
+        .playerImg {
+          max-width: 300px;
+          max-height: 300px;
         }
+      }
+      .playerDiv:nth-child(2) {
+        top: -10vh;
+        .playerStatus {
+        }
+      }
     }
+    #commentField {
+      width: 80%;
+      justify-content: flex-start;
+      aspect-ratio: auto;
+      #comment {
+        margin: 10px;
+      }
+      #attackBtns {
+      }
+    }
+  }
 }
 
 /*- moz- 用 */
 progress.red::-moz-progress-bar {
-    background-color: var(--color-3);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-  }
-  
-  progress.yellow::-moz-progress-bar {
-    background-color: var(--color-9);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-  }
-  
-  progress.blue::-moz-progress-bar {
-    background-color: var(--color-7);
-    border-radius: 50px;
-  }
-  
-  /*- webkit- 用 */
-  ::-webkit-progress-bar {
-    background-color: var(--color-1);
-    border-radius: 50px;
-  }
-  
-  progress.red::-webkit-progress-value {
-    background-color: var(--color-3);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-  }
-  
-  progress.yellow::-webkit-progress-value {
-    background-color: var(--color-9);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-  }
-  
-  progress.blue::-webkit-progress-value {
-    background-color: var(--color-7);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-  }
+  background-color: var(--color-3);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
 
-  progress.start::-webkit-progress-value {
-    background-color: var(--color-7);
-    border-radius: 50px;
-  }
+progress.yellow::-moz-progress-bar {
+  background-color: var(--color-9);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+progress.blue::-moz-progress-bar {
+  background-color: var(--color-7);
+  border-radius: 50px;
+}
+
+/*- webkit- 用 */
+::-webkit-progress-bar {
+  background-color: var(--color-1);
+  border-radius: 50px;
+}
+
+progress.red::-webkit-progress-value {
+  background-color: var(--color-3);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+progress.yellow::-webkit-progress-value {
+  background-color: var(--color-9);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+progress.blue::-webkit-progress-value {
+  background-color: var(--color-7);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+progress.start::-webkit-progress-value {
+  background-color: var(--color-7);
+  border-radius: 50px;
+}
 
 //   ::-webkit-progress-value {
 //     background-color: var(--color-7);

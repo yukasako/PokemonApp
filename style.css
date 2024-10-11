@@ -8,11 +8,11 @@
   --color-2: #c3c3c3;
   --color-3: #f4625d;
   --color-4: #2c2c2f;
-  --color-5: #5B5B5B;
+  --color-5: #5b5b5b;
   --color-6: #000000;
   --color-7: #74a7ff;
-  --color-8: #338BB0;
-  --color-9: #FFC225;
+  --color-8: #338bb0;
+  --color-9: #ffc225;
   --color-modal: hsla(0, 0%, 0%, 0.8);
   --shadow-1: rgba(28, 21, 21, 0.6) 0px 3px 10px;
   --shadow-2: rgba(0, 0, 0, 0.8) 1.95px 1.95px 2.6px;
@@ -81,7 +81,6 @@ h1 {
   background: var(--color-3);
   width: 80vw;
   max-width: 500px;
-  aspect-ratio: 3/4;
   justify-content: space-between;
   border-radius: 30px;
   box-shadow: var(--shadow-1);
